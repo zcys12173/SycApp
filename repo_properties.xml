@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<repo name="dahai">
+<repo name="repo">
     <!--projectType:
          MODULE :  module工程；
          APP    :  可运行app工程;
          NONE   :  不编译
      -->
-<!--    <project name="uicommon-android" projectType="APP" path="uicommon-android">-->
-<!--        <groupId>com.dahai</groupId>-->
-<!--        <artifactId>uicommon</artifactId>-->
-<!--        <version>1.4.1-SNAPSHOT</version>-->
-<!--        <mavenUrl>http://maven.tdahai.com:8082/repository/maven-snapshots/</mavenUrl>-->
-<!--    </project>-->
+    <project name="mvvm" projectType="MODULE" path="mvvm">
+<!--        <groupId></groupId>-->
+<!--        <artifactId></artifactId>-->
+<!--        <version></version>-->
+<!--        <mavenUrl></mavenUrl>-->
+    </project>
+
+    <project name="widget" projectType="MODULE" path="widget">
+        <!--        <groupId></groupId>-->
+        <!--        <artifactId></artifactId>-->
+        <!--        <version></version>-->
+        <!--        <mavenUrl></mavenUrl>-->
+    </project>
 </repo>

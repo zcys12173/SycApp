@@ -2,7 +2,7 @@ package com.syc.app
 
 import android.os.Bundle
 import com.syc.app.databinding.ActivityMainBinding
-import com.syc.framework.mvvm.BaseActivity
+import com.syc.mvvm.mvvm.BaseActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 

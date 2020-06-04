@@ -5,12 +5,11 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_DENIED
 import android.content.pm.PackageManager.PERMISSION_GRANTED
-import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
-import com.syc.framework.mvvm.viewmodel.BaseViewModel
+import com.syc.mvvm.mvvm.viewmodel.BaseViewModel
 
 class TestViewModel : BaseViewModel() {
     val name = "我的名字"

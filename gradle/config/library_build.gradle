@@ -1,10 +1,19 @@
-apply plugin: 'com.android.library'
+def isModule = ext.isModule
+if(isModule){
+    apply plugin: 'com.android.library'
+}else{
+    apply plugin: 'com.android.application'
+}
+
 apply(pluginsAction)
 
 android {
     compileSdkVersion build_versions['build_sdk']
     buildToolsVersion build_versions['build_tools_version']
     defaultConfig {
+        if(!isModule){
+            applicationId build_versions['applicationId']
+        }
         minSdkVersion build_versions['min_sdk']
         targetSdkVersion build_versions['target_sdk']
         versionCode 1
@@ -27,6 +36,17 @@ android {
     buildFeatures{
         dataBinding = true
     }
+
+    sourceSets { main {
+        if(isModule){
+            java.srcDirs = ['src/main/java']
+        }else{
+            java.srcDirs = ['src/main/java', 'src/simple/java']
+            manifest.srcFile 'src/simple/AndroidManifest.xml'
+            res.srcDirs = ['src/main/res','src/simple/res']
+        }
+
+    } }
 
 }
 

@@ -1,11 +1,10 @@
 package com.syc.app
 
-import android.app.Activity
 import android.os.Bundle
 import com.syc.app.databinding.ActivityMainBinding
 import com.syc.app.databinding.FragmentTestBinding
-import com.syc.framework.mvvm.BaseActivity
-import com.syc.framework.mvvm.BaseFragment
+import com.syc.mvvm.mvvm.BaseActivity
+import com.syc.mvvm.mvvm.BaseFragment
 
 class MainFragmentActivity : BaseActivity<ActivityMainBinding>() {
     override fun getLayoutResId(): Int = R.layout.activity_main_fragment
