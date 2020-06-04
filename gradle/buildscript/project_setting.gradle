@@ -1,0 +1,19 @@
+//读取repo_properties.xml 处理setting.gradle配置
+File file = new File("${rootProject.projectDir}/repo_properties.xml")
+if(file.exists()){
+    def isJenkins = hasProperty('IS_JENKINS')?Boolean.valueOf(IS_JENKINS):true
+    if(!isJenkins){
+        def xmlParser = new XmlParser()
+        def repo = xmlParser.parse(file)
+        repo.each {
+            def buildType = it.attribute('projectType')
+            if('NONE' != buildType.toUpperCase()){
+                def name = it.attribute('name')
+                def path = it.attribute('path')
+                include (":$name")
+                project(":$name").projectDir = new File(path)
+            }
+        }
+    }
+
+}

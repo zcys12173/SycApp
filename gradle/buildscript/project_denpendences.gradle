@@ -1,0 +1,41 @@
+//读取repo_properties.xml 处理工程依赖配置
+afterEvaluate {
+    File file = new File("${rootProject.projectDir}/repo_properties.xml")
+    if (file.exists()) {
+        def xmlParser = new XmlParser()
+        def repo = xmlParser.parse(file)
+        repo.each {
+            def name = it.attribute('name')
+            def buildType = it.attribute('projectType')
+            def isJenkins =project.hasProperty('IS_JENKINS')? Boolean.valueOf(IS_JENKINS):true
+            println("is build from jenkins:$isJenkins")
+            if ('MODULE' == buildType.toUpperCase() && !isJenkins) {
+                getDependencies().add('implementation', project(":$name"))
+                handlerSubProject(name, true)
+            } else {
+                def groupId = it.groupId[0].text()
+                def artifactId = it.artifactId[0].text()
+                def version = it.version[0].text()
+                def mavenUrl = it.mavenUrl[0].text()
+                getRepositories().maven { url mavenUrl }
+                getDependencies().add('implementation', "$groupId:$artifactId:$version")
+                if ('APP' == buildType.toUpperCase() && !isJenkins) {
+                    handlerSubProject(name, false)
+                }
+            }
+        }
+    }
+}
+
+/**
+ * 处理依赖工程
+ * @param name 工程名称
+ * @param isDependsFromLocal true：依赖本地工程，false：依赖远程aar
+ */
+def handlerSubProject(name, isModule) {
+    project(":$name") { p ->
+        println("handlerSubProject:$p")
+        p.ext.isModule = isModule
+    }
+}
+

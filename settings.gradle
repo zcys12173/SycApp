@@ -1,0 +1,3 @@
+include ':app', ':mvvm',':widget'
+rootProject.name='SycApp'
+apply from:"gradle/buildscript/project_setting.gradle"

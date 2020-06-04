@@ -1,0 +1,11 @@
+apply from: '../gradle/config/app_build.gradle'
+
+dimensConfig {
+    baseSize=375
+    matchSizes=[320,360,375,384,392,400,410,411]
+}
+
+dependencies {
+    implementation project(path: ':mvvm')
+    implementation project(path: ':widget')
+}
