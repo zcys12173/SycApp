@@ -5,11 +5,11 @@
          APP    :  可运行app工程;
          NONE   :  不编译
      -->
-    <project name="mvvm" projectType="MODULE" path="mvvm">
-<!--        <groupId></groupId>-->
-<!--        <artifactId></artifactId>-->
-<!--        <version></version>-->
-<!--        <mavenUrl></mavenUrl>-->
+    <project name="mvvm" projectType="APP" path="mvvm">
+        <groupId>com.syc.framework</groupId>
+        <artifactId>mvvm</artifactId>
+        <version>0.0.1</version>
+        <mavenUrl></mavenUrl>
     </project>
 
     <project name="widget" projectType="MODULE" path="widget">

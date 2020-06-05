@@ -17,11 +17,13 @@ afterEvaluate {
                     def groupId = it.groupId[0].text()
                     def artifactId = it.artifactId[0].text()
                     def version = it.version[0].text()
-                    def mavenUrl = it.mavenUrl[0].text()
-                    getRepositories().maven { url mavenUrl }
+                    String mavenUrl = it.mavenUrl[0].text()
+                   if(!mavenUrl.isEmpty()){
+                       getRepositories().maven { url mavenUrl }
+                   }
                     getDependencies().add('implementation', "$groupId:$artifactId:$version")
                 }catch(Exception e){
-                    logger.log(LogLevel.ERROR,"依赖远程error，请检查repo_properties.xml配置")
+                    logger.log(LogLevel.ERROR,"依赖远程error，请检查repo_properties.xml配置,${e.message}")
                 }
                 if ('APP' == buildType.toUpperCase() && !isJenkins) {
                     handlerSubProject(name, false)

@@ -1,4 +1,4 @@
-apply from: '../gradle/config/library_build.gradle'
+apply from: '../gradle/config/module_build.gradle'
 
 dimensConfig {
     baseSize=375

@@ -1,11 +1,84 @@
-apply from: '../gradle/config/app_build.gradle'
+apply plugin: 'com.android.application'
+apply(pluginsAction)
+
+apply from: '../gradle/buildscript/project_denpendences.gradle'
+
+android {
+    compileSdkVersion build_versions['build_sdk']
+    buildToolsVersion build_versions['build_tools_version']
+    defaultConfig {
+        applicationId build_versions['applicationId']
+        minSdkVersion build_versions['min_sdk']
+        targetSdkVersion build_versions['target_sdk']
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.activity_main.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility build_versions['sourceCompatibility']
+        targetCompatibility build_versions['targetCompatibility']
+    }
+
+    signingConfigs{
+        release{
+            storeFile file("app.keystore")
+            storePassword "123456"
+            keyAlias "key0"
+            keyPassword "123456"
+        }
+        debug{
+            storeFile file("app.keystore")
+            storePassword "123456"
+            keyAlias "key0"
+            keyPassword "123456"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            multiDexEnabled true
+            shrinkResources true
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            applicationIdSuffix ".debug" //设置debug包的apk包名后缀
+            debuggable true              //是否可调式
+            jniDebuggable true           //是否可调式jni
+            multiDexEnabled true         //多dex
+            zipAlignEnabled true         //apk优化
+            minifyEnabled true          //混淆开关
+            shrinkResources true         //清理无用资源
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    buildFeatures{
+        dataBinding = true
+    }
+
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps['kotlin_stdlib_jdk7']
+    implementation deps['appcompat']
+    implementation deps['core_ktx']
+    implementation deps['constraintlayout']
+    annotationProcessor deps['databinding_compiler']
+    testImplementation deps['junit']
+    androidTestImplementation deps['android_junit']
+    androidTestImplementation deps['espresso_core']
+
+}
 
 dimensConfig {
     baseSize=375
     matchSizes=[320,360,375,384,392,400,410,411]
 }
-
-//dependencies {
-//    implementation project(path: ':mvvm')
-//    implementation project(path: ':widget')
-//}

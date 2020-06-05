@@ -52,7 +52,6 @@ def pluginsAction = new Action<ObjectConfigurationAction>() {
     void execute(ObjectConfigurationAction objectConfigurationAction) {
         objectConfigurationAction.plugin('kotlin-android')
         objectConfigurationAction.plugin('kotlin-kapt')
-        objectConfigurationAction.plugin('kotlin-kapt')
         objectConfigurationAction.plugin('com.syc.plugin.DimensPlugin')
     }
 }

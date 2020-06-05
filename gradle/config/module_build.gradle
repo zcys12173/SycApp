@@ -6,13 +6,12 @@ if(isModule){
 }
 
 apply(pluginsAction)
-
 android {
     compileSdkVersion build_versions['build_sdk']
     buildToolsVersion build_versions['build_tools_version']
     defaultConfig {
         if(!isModule){
-            applicationId build_versions['applicationId']
+            applicationId "${build_versions['applicationId']}.${project.name}"
         }
         minSdkVersion build_versions['min_sdk']
         targetSdkVersion build_versions['target_sdk']
