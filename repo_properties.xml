@@ -5,14 +5,22 @@
          APP    :  可运行app工程;
          NONE   :  不编译
      -->
-    <project name="mvvm" projectType="APP" path="mvvm">
+    <!--  configuration  依赖方式  api，implementation 等等-->
+    <project name="mvvm" projectType="MODULE" path="mvvm" configuration="api" >
         <groupId>com.syc.framework</groupId>
         <artifactId>mvvm</artifactId>
         <version>0.0.1</version>
         <mavenUrl></mavenUrl>
     </project>
 
-    <project name="widget" projectType="MODULE" path="widget">
+    <project name="widget" projectType="MODULE" path="widget" configuration="api">
+        <!--        <groupId></groupId>-->
+        <!--        <artifactId></artifactId>-->
+        <!--        <version></version>-->
+        <!--        <mavenUrl></mavenUrl>-->
+    </project>
+
+    <project name="net" projectType="MODULE" path="net" configuration="api">
         <!--        <groupId></groupId>-->
         <!--        <artifactId></artifactId>-->
         <!--        <version></version>-->

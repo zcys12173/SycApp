@@ -15,9 +15,9 @@
             android:text="@{vm.name}"
             />
         <com.syc.app.CustomEditText
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/dp_10"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/dp_40"
             android:background="@color/blue"
             onTextChanged="@{vm.watcher}">
         </com.syc.app.CustomEditText>

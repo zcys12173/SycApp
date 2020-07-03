@@ -19,37 +19,22 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
-# 代码混淆压缩比，在0~7之间，默认为5，一般不需要更改
+# 指定代码的压缩级别
 -optimizationpasses 5
-# 混淆时不适用大小写混合，混淆后的类名为小写
--dontusemixedcaseclassnames
-# 指定不去忽略非公共的库的类的成员
--dontskipnonpubliclibraryclasses
-# 不做预校验，preverify是proguard的4个步骤之一，android不需要做预校验，去除这一步可以加快混淆速度
--dontpreverify
-# 有了verbose这句话，混淆后就会生成映射文件
--verbose
-# 指定混淆时采用的算法，后面的参数是一个过滤器
--optimizations !code/simplification/arithmetic,!field/*,!class/merging/*,!code/allocation/variable
 
-# 指定不去忽略非公共库的类成员
+# 不忽略库中的非public的类成员
 -dontskipnonpubliclibraryclassmembers
+
+# google推荐算法
+-optimizations !code/simplification/arithmetic,!code/simplification/cast,!field/*,!class/merging/*
+
+# 避免混淆Annotation、内部类、泛型、匿名类
+-keepattributes *Annotation*,InnerClasses,Signature,EnclosingMethod
+
 # 抛出异常时保留代码行号
 -keepattributes SourceFile,LineNumberTable
-# 保护代码中的Annotation不被混淆
--keepattributes *Annotation*
-#避免混淆泛型 如果混淆报错建议关掉
--keepattributes Signature
-#忽略警告
--ignorewarnings
--keepattributes EnclosingMethod
--keepattributes InnerClasses
 
--dontwarn org.codehaus.**
--dontwarn java.nio.**
--dontwarn java.lang.invoke.**
-
--keep public class * extends android.app.Fragment
+# 保持四大组件
 -keep public class * extends android.app.Activity
 -keep public class * extends android.app.Application
 -keep public class * extends android.app.Service
@@ -57,45 +42,23 @@
 -keep public class * extends android.content.ContentProvider
 -keep public class * extends android.app.backup.BackupAgentHelper
 -keep public class * extends android.preference.Preference
+-keep public class * extends android.view.View
 
--keepclasseswithmembernames class * {
-    native <methods>;
-}
--keepclasseswithmembernames class * {
+# 保持自定义控件
+-keep public class * extends android.view.View{
+    *** get*();
+    void set*(***);
+    public <init>(android.content.Context);
     public <init>(android.content.Context, android.util.AttributeSet);
-}
--keepclasseswithmembernames class * {
     public <init>(android.content.Context, android.util.AttributeSet, int);
 }
--keepclassmembers enum * {
-    public static **[] values();
-    public static ** valueOf(java.lang.String);
-}
--keep class * implements android.os.Parcelable {
-    *;
-}
--keep class * implements java.io.Serializable{
-    *;
-}
--keep public class * extends android.view.View {
-public <init>(android.content.Context);
-public <init>(android.content.Context, android.util.AttributeSet);
-public <init>(android.content.Context, android.util.AttributeSet, int);
-public void set*(...);
-}
 
--assumenosideeffects class android.util.Log {
-    public static *** v(...);
-    public static *** d(...);
-    public static *** i(...);
-    public static *** w(...);
-}
-
-#不混淆资源类
--keepclassmembers class **.R$* {
-    public static <fields>;
-}
-
--keep public class **.R$*{
-   public static final int *;
+# 保持所有实现 Serializable 接口的类成员
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
 }

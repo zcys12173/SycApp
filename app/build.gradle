@@ -1,7 +1,10 @@
 apply plugin: 'com.android.application'
 apply(pluginsAction)
 
-apply from: '../gradle/buildscript/project_denpendences.gradle'
+ext.urls = [
+        'dev'   : "\"http://www.xiuniyilian.top:8082/Record/\"",
+        'online': "\"http://www.xiuniyilian.top:8082/Record/\""
+]
 
 android {
     compileSdkVersion build_versions['build_sdk']
@@ -20,14 +23,14 @@ android {
         targetCompatibility build_versions['targetCompatibility']
     }
 
-    signingConfigs{
-        release{
+    signingConfigs {
+        release {
             storeFile file("app.keystore")
             storePassword "123456"
             keyAlias "key0"
             keyPassword "123456"
         }
-        debug{
+        debug {
             storeFile file("app.keystore")
             storePassword "123456"
             keyAlias "key0"
@@ -43,6 +46,7 @@ android {
             zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+            buildConfigField('String', 'URL', urls.online)
         }
 
         debug {
@@ -51,19 +55,19 @@ android {
             jniDebuggable true           //是否可调式jni
             multiDexEnabled true         //多dex
             zipAlignEnabled true         //apk优化
-            minifyEnabled true          //混淆开关
-            shrinkResources true         //清理无用资源
+            minifyEnabled false          //混淆开关
+            shrinkResources false         //清理无用资源
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
+            buildConfigField('String', 'URL', urls.dev)
         }
     }
 
-    buildFeatures{
+    buildFeatures {
         dataBinding = true
     }
-
-
 }
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -71,6 +75,7 @@ dependencies {
     implementation deps['appcompat']
     implementation deps['core_ktx']
     implementation deps['constraintlayout']
+    implementation project(path: ':common')
     annotationProcessor deps['databinding_compiler']
     testImplementation deps['junit']
     androidTestImplementation deps['android_junit']
@@ -79,6 +84,6 @@ dependencies {
 }
 
 dimensConfig {
-    baseSize=375
-    matchSizes=[320,360,375,384,392,400,410,411]
+    baseSize = 375
+    matchSizes = [320, 360, 375, 384, 392, 400, 410, 411]
 }

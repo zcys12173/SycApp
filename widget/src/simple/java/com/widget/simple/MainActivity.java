@@ -1,4 +1,4 @@
-package com.mvvm.simple;
+package com.widget.simple;
 
 import android.os.Bundle;
 

@@ -1,4 +1,4 @@
-def isModule = ext.isModule
+def isModule = ext.find("isModule") == null?true:ext.isModule
 if(isModule){
     apply plugin: 'com.android.library'
 }else{
@@ -27,6 +27,11 @@ android {
 
     buildTypes {
         release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -50,12 +55,13 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation deps['kotlin_stdlib_jdk7']
-    implementation deps['appcompat']
-    implementation deps['core_ktx']
-    implementation deps['constraintlayout']
-    annotationProcessor deps['databinding_compiler']
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api deps['kotlin_stdlib_jdk7']
+    api deps['kotlinx_coroutines']
+    api deps['appcompat']
+    api deps['core_ktx']
+    api deps['constraintlayout']
+    kapt deps['databinding_compiler']
     testImplementation deps['junit']
     androidTestImplementation deps['android_junit']
     androidTestImplementation deps['espresso_core']

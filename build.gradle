@@ -2,7 +2,6 @@
 
 buildscript {
     apply from:'./gradle/config/version.gradle'
-    print('-------1')
     repositories {
         repositories {
             addRepos(getRepositories())

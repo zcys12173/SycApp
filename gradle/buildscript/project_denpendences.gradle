@@ -7,10 +7,11 @@ afterEvaluate {
         repo.each {
             def name = it.attribute('name')
             def buildType = it.attribute('projectType')
+            def configuration = it.attribute('configuration')
             def isJenkins =project.hasProperty('IS_JENKINS')? Boolean.valueOf(IS_JENKINS):true
             println("is build from jenkins:$isJenkins")
             if ('MODULE' == buildType.toUpperCase() && !isJenkins) {
-                getDependencies().add('implementation', project(":$name"))
+                getDependencies().add(configuration, project(":$name"))
                 handlerSubProject(name, true)
             } else {
                 try {
@@ -21,7 +22,7 @@ afterEvaluate {
                    if(!mavenUrl.isEmpty()){
                        getRepositories().maven { url mavenUrl }
                    }
-                    getDependencies().add('implementation', "$groupId:$artifactId:$version")
+                    getDependencies().add(configuration, "$groupId:$artifactId:$version")
                 }catch(Exception e){
                     logger.log(LogLevel.ERROR,"依赖远程error，请检查repo_properties.xml配置,${e.message}")
                 }

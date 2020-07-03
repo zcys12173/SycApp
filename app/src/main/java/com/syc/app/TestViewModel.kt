@@ -5,14 +5,20 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_DENIED
 import android.content.pm.PackageManager.PERMISSION_GRANTED
+import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
+import com.syc.common.base.LifecycleViewModel
 import com.syc.mvvm.mvvm.viewmodel.BaseViewModel
+import com.syc.net.HttpManager
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class TestViewModel : BaseViewModel() {
-    val name = "我的名字"
+class TestViewModel : LifecycleViewModel(){
+    var name = "我的名字"
 
     val watcher = object : TextWatcher {
         override fun afterTextChanged(s: Editable?) {
@@ -25,6 +31,23 @@ class TestViewModel : BaseViewModel() {
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
         }
 
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d("TestViewModel",BuildConfig.URL)
+        mockNetRequest()
+    }
+
+
+    private fun mockNetRequest(){
+        launch {
+            val result = withContext(Dispatchers.IO) {
+                HttpManager.instance.createService(ApiService::class.java).login("shiyucheng1","shiyucheng1")
+            }
+            this@TestViewModel.name = result.data.userName?:""
+            notifyChange()
+        }
     }
 
     fun openMainFragmentActivity() {
