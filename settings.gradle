@@ -1,3 +1,4 @@
+include ':aop_plugin'
 include ':app',':common'
 rootProject.name='SycApp'
 apply from:"gradle/buildscript/project_setting.gradle"
