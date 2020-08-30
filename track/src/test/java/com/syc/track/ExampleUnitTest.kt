@@ -1,5 +1,6 @@
-package com.syc.aop_plugin
+﻿package com.syc.track
 
+import android.view.View
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -11,7 +12,8 @@ import org.junit.Assert.*
  */
 class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
+    fun addition_isCorrect(view: View) {
         assertEquals(4, 2 + 2)
+        track(view)
     }
 }

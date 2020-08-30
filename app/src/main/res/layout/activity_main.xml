@@ -25,6 +25,7 @@
         <Button
             android:layout_width="match_parent"
             android:text="跳转"
+            android:tag="jump_btn"
             android:onClick="@{()->vm.openMainFragmentActivity()}"
             android:layout_height="wrap_content"/>
     </LinearLayout>

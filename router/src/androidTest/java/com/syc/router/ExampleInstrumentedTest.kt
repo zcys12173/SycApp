@@ -1,4 +1,4 @@
-package com.syc.aop_plugin
+﻿package com.syc.router
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.syc.aop_plugin.test", appContext.packageName)
+        assertEquals("com.syc.router.test", appContext.packageName)
     }
 }

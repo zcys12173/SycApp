@@ -7,14 +7,14 @@ buildscript {
     }
     repositories {
         maven {
-            url '/Users/liguiting/Documents/androidstudio_workplace/SycApp/aop_plugin/repo'
+            url 'E:/android_workplace/SycApp/aop_plugin/repo'
         }
         addRepos(getRepositories())
     }
     dependencies {
         classpath pluginDeps['gradle']
         classpath pluginDeps['kotlin']
-        classpath 'com.syc.plugin.aop:aop_plugin:1.2.1'
+        classpath 'com.syc.plugin.aop:aop_plugin:0.0.10'
         classpath 'com.syc.plugin:resource:0.0.1'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'

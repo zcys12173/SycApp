@@ -26,4 +26,10 @@
         <!--        <version></version>-->
         <!--        <mavenUrl></mavenUrl>-->
     </project>
+
+    <project name="router" projectType="NONE" path="router" configuration="api">
+    </project>
+
+    <project name="track" projectType="MODULE" path="track" configuration="api">
+    </project>
 </repo>

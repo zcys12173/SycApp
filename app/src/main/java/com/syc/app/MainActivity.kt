@@ -15,7 +15,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun init(savedInstanceState: Bundle?) {
-
+        rootBinding.root.setOnClickListener{
+            System.out.println("setOnClickListener")
+        }
     }
 
 }

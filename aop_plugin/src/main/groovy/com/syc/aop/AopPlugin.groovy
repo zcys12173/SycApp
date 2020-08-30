@@ -5,7 +5,7 @@ import com.syc.aop.transform.AopTransform
 import com.syc.aop.transform.AppTransform
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-
+//:\android_workplace\SycApp\app\build\intermediates\transforms\AopTransform\debug
 class AopPlugin implements Plugin<Project> {
 
     @Override
@@ -21,6 +21,7 @@ class AopPlugin implements Plugin<Project> {
         print("注册transform")
         AppExtension android = project.extensions.getByType(AppExtension)
         android.registerTransform(new AopTransform(project))
+//        android.registerTransform(new AppTransform())
 
 
 

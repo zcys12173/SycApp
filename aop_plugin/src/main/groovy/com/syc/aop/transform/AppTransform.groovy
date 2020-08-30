@@ -1,13 +1,12 @@
 package com.syc.aop.transform
 
-import com.android.SdkConstants
+
 import com.android.annotations.NonNull
 import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
 import com.android.builder.utils.ZipEntryUtils
 import com.google.common.io.Files
 import com.syc.aop.visitor.ScanClassVisitor
-import org.apache.commons.io.FileUtils
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
 
@@ -31,7 +30,7 @@ class AppTransform extends Transform {
 
     @Override
     Set<? super QualifiedContent.Scope> getScopes() {
-        return TransformManager.PROJECT_ONLY
+        return TransformManager.SCOPE_FULL_PROJECT
     }
 
     @Override
@@ -45,69 +44,53 @@ class AppTransform extends Transform {
         TransformOutputProvider provider = transformInvocation.outputProvider
         assert provider != null
         boolean isIncremental = transformInvocation.isIncremental()
-        if (!isIncremental) {
-            provider.deleteAll()
-        }
+//        if (!isIncremental) {
+//            provider.deleteAll()
+//        }
         print('开始扫描')
         transformInvocation.inputs.forEach {
             //处理jar文件
             it.jarInputs.forEach { jarInput ->
-                Status status = jarInput.status
-                File inputJar = jarInput.file
-                File outputJar = provider.getContentLocation(jarInput.name, jarInput.contentTypes, jarInput.scopes, Format.JAR)
-                if (isIncremental) {
-                    println("增量处理${jarInput.name}文件")
-                    switch (status) {
-                        case Status.NOTCHANGED:
-                            break
-                        case Status.CHANGED:
-                        case Status.ADDED:
-                            transformJar(inputJar, outputJar)
-                            break;
-                        case Status.REMOVED:
-                            FileUtils.forceDelete(outputJar)
-                            break
+                FileInputStream fis = new FileInputStream(jarInput.file)
+                ZipInputStream zis = new ZipInputStream(fis)
+                ZipEntry entry = zis.getNextEntry()
+                while (entry != null && ZipEntryUtils.isValidZipEntryName(entry)) {
+                    if (!entry.getName().contains("R\$")) {
+                        println("--------${entry.getName()}")
                     }
-                } else {
-                    println("非增量处理${jarInput.name}")
-                    transformJar(inputJar, outputJar)
+                    entry = zis.getNextEntry()
                 }
             }
-
             //处理源文件
-            it.directoryInputs.forEach {
-                File inputDir = it.file
-                File outputDir = provider.getContentLocation(it.name, it.contentTypes, it.scopes, Format.DIRECTORY)
-                if (isIncremental) {
-                    it.changedFiles.entrySet().forEach { entry ->
-                        File inputFile = entry.getKey()
-                        Status status = entry.getValue()
-                        switch (status) {
-                            case Status.NOTCHANGED:
-                                break
-                            case Status.ADDED:
-                            case Status.CHANGED:
-                                if (!inputFile.isDirectory() && inputFile.name.endsWith(SdkConstants.DOT_CLASS)) {
-                                    File out = toOutputFile(outputDir, inputDir, inputFile)
-                                    transformFile(inputFile, out)
-                                }
-                                break
-                            case Status.REMOVED:
-                                File outputFile = toOutputFile(outputDir, inputDir, inputFile)
-                                FileUtils.forceDelete(outputFile)
-                                break
-                        }
-                    }
-                } else {
-                    File[] files = inputDir.listFiles()
-                    for (File file : files) {
-                        if (file.name.endsWith(SdkConstants.DOT_CLASS)) {
-                            File out = toOutputFile(outputDir, inputDir, file)
-                            transformFile(file, out)
-                        }
+            it.directoryInputs.forEach { dirInput ->
+
+                File inputDir = dirInput.file
+
+                File outputDir = provider.getContentLocation(dirInput.name, dirInput.contentTypes, dirInput.scopes, Format.DIRECTORY)
+                if (inputDir.isDirectory()) {
+                    inputDir.listFiles().each { iFile ->
+                        loopFile(iFile)
                     }
                 }
             }
+            println("foreach over")
+        }
+        println("foreach over1")
+    }
+
+    private void loopFile(File file) {
+        try {
+            if (file.isDirectory()) {
+                file.listFiles().each {
+                    loopFile(it)
+                }
+            } else {
+                if (!file.name.contains("R\$")) {
+                    println("--------${file.name}")
+                }
+            }
+        } catch (Exception e) {
+            println(e.message)
         }
     }
 
@@ -128,20 +111,24 @@ class AppTransform extends Transform {
             println('2')
             ZipEntry entry = zis.getNextEntry()
             while (entry != null && ZipEntryUtils.isValidZipEntryName(entry)) {
-                if (!entry.isDirectory() && entry.getName().endsWith(SdkConstants.DOT_CLASS)) {
-                    println('3')
-                    zos.putNextEntry(new ZipEntry(entry.getName()))
-                    println('4')
-                    if(inputJar.name.contains("R\$")){
-
-                    }
-                    byte[] newClass = modifyClass(zis)
-                    println('5')
-                    zos.write(newClass)
-                } else {
-                    // Do not copy resources
+                if (!entry.getName().contains("R\$")) {
+                    println("--------${entry.getName()}")
                 }
-                entry = zis.getNextEntry()
+
+//                if (!entry.isDirectory() && entry.getName().endsWith(SdkConstants.DOT_CLASS)) {
+//                    println('3')
+//                    zos.putNextEntry(new ZipEntry(entry.getName()))
+//                    println('4')
+//                    if(inputJar.name.contains("R\$")){
+//
+//                    }
+//                    byte[] newClass = modifyClass(zis)
+//                    println('5')
+//                    zos.write(newClass)
+//                } else {
+//                    // Do not copy resources
+//                }
+//                entry = zis.getNextEntry()
             }
             println('6')
             zos.flush()
@@ -156,10 +143,13 @@ class AppTransform extends Transform {
 
     private void transformFile(File inputFile, File outputFile) {
         Files.createParentDirs(outputFile);
+        if (!entry.getName().contains("R\$")) {
+            println("--------${File.name}")
+        }
         try {
             FileInputStream fis = new FileInputStream(inputFile);
             FileOutputStream fos = new FileOutputStream(outputFile)
-            byte[] newClass = modifyClass(fis)
+//            byte[] newClass = modifyClass(fis)
             fos.write(newClass)
             fos.flush()
         } finally {
