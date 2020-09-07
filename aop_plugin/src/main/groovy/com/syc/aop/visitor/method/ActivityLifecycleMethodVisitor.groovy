@@ -13,6 +13,20 @@ class ActivityLifecycleMethodVisitor extends AdviceAdapter{
     @Override
     protected void onMethodEnter() {
         super.onMethodEnter()
+        mv.visitFieldInsn(GETSTATIC,"com/syc/track/LifecycleTracker","INSTANCE","Lcom/syc/track/LifecycleTracker;");
+        mv.visitVarInsn(ALOAD,0)
+        if(name == "onStart"){
+            mv.visitMethodInsn(INVOKEVIRTUAL,"com/syc/track/LifecycleTracker","onStart","(Ljava/lang/Object;)V",false);
+        }
+
+        if(name == "onStop"){
+            mv.visitMethodInsn(INVOKEVIRTUAL,"com/syc/track/LifecycleTracker","onStop","(Ljava/lang/Object;)V",false);
+        }
+
+
+//        GETSTATIC com/syc/track/LifecycleTracker.INSTANCE : Lcom/syc/track/LifecycleTracker;
+//        LDC "sss"
+//        INVOKEVIRTUAL com/syc/track/LifecycleTracker.onStart (Ljava/lang/String;)V
     }
 
     @Override

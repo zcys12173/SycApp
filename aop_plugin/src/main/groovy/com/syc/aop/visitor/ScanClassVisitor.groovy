@@ -1,6 +1,7 @@
 package com.syc.aop.visitor
 
 import com.syc.aop.base.MethodVisitorDispatcher
+import com.syc.aop.visitor.method.ActivityLifecycleMethodVisitor
 import com.syc.aop.visitor.method.ViewClickMethodVisitor
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.MethodVisitor
@@ -47,6 +48,10 @@ class ScanClassVisitor extends ClassVisitor {
                     mv = new ViewClickMethodVisitor(mv,access,name,descriptor)
                 }
             }
+        }
+
+        if((name == "onStart" || name == "onStop" ) && descriptor == "()V"){
+            mv = new ActivityLifecycleMethodVisitor(mv,access,name,descriptor);
         }
 
         return mv
