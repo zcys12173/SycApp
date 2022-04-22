@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.syc.plugin.aop'
+//apply plugin: 'com.syc.plugin.aop'
 apply(pluginsAction)
+apply plugin: 'buildSrcPlugin'
 
 ext.urls = [
         'dev'   : "\"http://www.xiuniyilian.top:8082/Record/\"",

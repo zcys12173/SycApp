@@ -1,0 +1,30 @@
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+
+buildscript {
+    apply from: '../gradle/config/version.gradle'
+    ext {
+        kotlin_version = '1.3.72'
+    }
+    repositories {
+        addRepos(getRepositories())
+    }
+    dependencies {
+        classpath pluginDeps['gradle']
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.20'
+    }
+}
+
+allprojects {
+    repositories {
+        addRepos(getRepositories())
+    }
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation 'com.android.tools.build:gradle:4.0.1'
+    implementation 'com.quinn.hunter:hunter-transform:0.9.3'
+    implementation deps['kotlin_stdlib_jdk7']
+}

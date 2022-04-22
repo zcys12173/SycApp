@@ -3,3 +3,4 @@ rootProject.name='SycApp'
 include ':aop_plugin'
 include ':app',':common',':router'
 apply from:"gradle/buildscript/project_setting.gradle"
+include ':qrcode'

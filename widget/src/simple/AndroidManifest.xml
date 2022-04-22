@@ -11,10 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.net.simple.MainActivity">
+        <activity android:name="com.widget.simple.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="com.tal.simple.MainActivity" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

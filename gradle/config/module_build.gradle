@@ -31,7 +31,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
-        release {
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -61,7 +61,6 @@ dependencies {
     api deps['appcompat']
     api deps['core_ktx']
     api deps['constraintlayout']
-    kapt deps['databinding_compiler']
     testImplementation deps['junit']
     androidTestImplementation deps['android_junit']
     androidTestImplementation deps['espresso_core']

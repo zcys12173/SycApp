@@ -15,6 +15,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun init(savedInstanceState: Bundle?) {
-       `
+
     }
 }

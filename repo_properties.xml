@@ -32,4 +32,7 @@
 
     <project name="track" projectType="MODULE" path="track" configuration="api">
     </project>
+
+    <project name="qrcode" projectType="APP" path="qrcode" configuration="api">
+    </project>
 </repo>

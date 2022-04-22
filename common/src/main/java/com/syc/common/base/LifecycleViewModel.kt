@@ -1,6 +1,7 @@
 package com.syc.common.base
 
 import android.os.Bundle
+import android.util.Log
 import androidx.annotation.CallSuper
 import com.syc.mvvm.mvvm.viewmodel.BaseViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -21,7 +22,7 @@ import kotlin.coroutines.CoroutineContext
  *   }
  * }
  */
-open class LifecycleViewModel(@JvmField private val exceptionHandler: CoroutineExceptionHandler? = null) :
+open class LifecycleViewModel(private val exceptionHandler: CoroutineExceptionHandler? = null) :
     BaseViewModel(), CoroutineScope {
     private lateinit var job: Job
     override val coroutineContext: CoroutineContext
