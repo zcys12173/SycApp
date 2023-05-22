@@ -1,12 +1,15 @@
 apply plugin: 'org.jetbrains.kotlin.android'
 boolean isApp = project.plugins.hasPlugin('com.android.application')
 android {
+    compileSdkVersion COMPILE_SDK_VERSION
     defaultConfig {
+        minSdkVersion MIN_SDK_VERSION
+        targetSdkVersion TARGET_SDK_VERSION
         if (isApp) {
             applicationId = APPLICATION_ID
         }
-        versionCode 1
-        versionName "1.0"
+        versionCode VERSION_CODE.toInteger()
+        versionName VERSION_NAME
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -24,14 +27,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
-
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'

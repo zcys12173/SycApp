@@ -1,7 +1,18 @@
 plugins {
     id 'com.android.application'
     id 'project-plugin'
+    id 'io.github.zcys12173.ScreenMatch'
+    id 'io.github.zcys12173.plugin_router'
 }
 android {
     namespace 'com.syc.mvvm.app'
+}
+dependencies {
+    implementation( project(':module-user'))
+}
+
+screenMatch {
+    baseValue = 360  //基准值，一般使用UI设计稿上的宽度dp
+    matchSizes = [240,320,360,375,384,392,400,410,411,432,480,533,592,600,640,662,720,768,800,811,820,960,961,1024,1024,1280,1365] //要适配的尺寸dp
+    autoRunWithPacking = false
 }

@@ -1,0 +1,13 @@
+plugins {
+    id 'com.android.library'
+    id 'project-plugin'
+}
+
+android {
+    namespace 'com.syc.mvvm.common'
+
+}
+
+dependencies {
+    api ( project(':framework'))
+}

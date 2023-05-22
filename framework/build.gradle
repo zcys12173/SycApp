@@ -1,0 +1,18 @@
+plugins {
+    id 'com.android.library'
+    id 'project-plugin'
+}
+
+android {
+    namespace 'com.syc.mvvm.framework'
+
+}
+
+dependencies {
+    api libs['core-ktx']
+    api libs['appcompat']
+    api libs['material']
+    api libs['constraintlayout']
+    api libs['KRouter']
+    api libs['viewmodel-ktx']
+}
