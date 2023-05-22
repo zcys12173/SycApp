@@ -19,9 +19,15 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        helloPlugin {
-            id  = 'project-plugin'
+
+        applicationPlugin {
+            id  = 'application-plugin'
             implementationClass = 'com.syc.mvvm.ApplicationPlugin'
+        }
+
+        libraryPlugin {
+            id  = 'library-plugin'
+            implementationClass = 'com.syc.mvvm.LibraryPlugin'
         }
     }
 }

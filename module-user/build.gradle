@@ -1,6 +1,5 @@
 plugins {
-    id 'com.android.library'
-    id 'project-plugin'
+    id 'library-plugin'
 }
 android {
     namespace 'com.syc.mvvm.user'
