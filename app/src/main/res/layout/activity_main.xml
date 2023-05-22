@@ -1,32 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-    <data>
-        <variable
-            name="vm"
-            type="com.syc.app.TestViewModel" />
-    </data>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{vm.name}"
-            />
-        <com.syc.app.CustomEditText
-            android:layout_margin="@dimen/dp_10"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_40"
-            android:background="@color/blue"
-            onTextChanged="@{vm.watcher}">
-        </com.syc.app.CustomEditText>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
-        <Button
-            android:layout_width="match_parent"
-            android:text="跳转"
-            android:tag="jump_btn"
-            android:onClick="@{()->vm.openMainFragmentActivity()}"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-</layout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

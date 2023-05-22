@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-     <dimen name="dp_108">108dp</dimen>
-     <dimen name="dp_30">30dp</dimen>
-     <dimen name="dp_22_22">22.22dp</dimen>
-     <dimen name="sp_18">18sp</dimen>
-     <dimen name="dp_40">40dp</dimen>
-     <dimen name="dp_10">10dp</dimen>
-</resources>

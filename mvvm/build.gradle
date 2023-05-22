@@ -1,5 +1,0 @@
-apply from: '../gradle/config/module_build.gradle'
-dimensConfig {
-    baseSize=375
-    matchSizes=[320,360,375,384,392,400,410,411]
-}

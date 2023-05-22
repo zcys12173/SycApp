@@ -1,6 +1,17 @@
-include ':track'
-rootProject.name='SycApp'
-include ':aop_plugin'
-include ':app',':common',':router'
-apply from:"gradle/buildscript/project_setting.gradle"
-include ':qrcode'
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "SycApp"
+include ':app'
+
