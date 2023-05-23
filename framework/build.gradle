@@ -14,4 +14,5 @@ dependencies {
     api libs['constraintlayout']
     api libs['KRouter']
     api libs['viewmodel-ktx']
+    api libs['gson']
 }

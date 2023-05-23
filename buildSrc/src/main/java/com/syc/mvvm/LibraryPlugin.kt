@@ -1,9 +1,5 @@
 package com.syc.mvvm
 
-import com.android.build.api.dsl.AndroidSourceSet
-import com.android.build.api.dsl.ApplicationExtension
-import com.android.build.api.dsl.CommonExtension
-import com.syc.mvvm.core.extensions.ModuleExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

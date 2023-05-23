@@ -8,5 +8,5 @@ android {
 }
 
 dependencies {
-    api ( project(':framework'))
+    api ( project(':net'))
 }

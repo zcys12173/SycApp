@@ -10,6 +10,7 @@ ext {
 
 
 def lifecycle_version = "2.5.1"
+def okhttp_version = "4.11.0"
 
 ext.libs = [
         'core-ktx'        : 'androidx.core:core-ktx:1.10.1',
@@ -17,6 +18,12 @@ ext.libs = [
         'material'        : 'com.google.android.material:material:1.9.0',
         'constraintlayout': 'androidx.constraintlayout:constraintlayout:2.1.4',
         'KRouter'         : 'io.github.zcys12173:KRouter:1.0.0-pre',
-        'viewmodel-ktx'   : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+        'viewmodel-ktx'   : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
+        'gson'            : "com.google.code.gson:gson:2.10.1",
+
+        'okhttp'          : "com.squareup.okhttp3:okhttp:$okhttp_version",
+        'okhttp-logging'  : "com.squareup.okhttp3:logging-interceptor:$okhttp_version",
+        'retrofit'        : "com.squareup.retrofit2:retrofit:2.9.0",
+
 ]
 
