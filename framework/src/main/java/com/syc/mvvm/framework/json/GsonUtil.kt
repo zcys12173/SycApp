@@ -65,7 +65,7 @@ private val deserialization = object : ExclusionStrategy {
 @Target(AnnotationTarget.FIELD)
 annotation class Ignore(
     val serialize: Boolean = true, // 序列化的时候忽略该字段
-    val deserialize: Boolean = true// 反序列化的时候忽略该字段
+    val deserialize: Boolean = false// 反序列化的时候忽略该字段
 )
 
 
