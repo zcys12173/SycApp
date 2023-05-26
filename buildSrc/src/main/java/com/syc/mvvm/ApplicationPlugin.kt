@@ -2,6 +2,7 @@ package com.syc.mvvm
 
 import com.android.build.api.dsl.ApplicationExtension
 import com.syc.mvvm.core.getBuildManifestPath
+import com.syc.mvvm.core.handleDependencies
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -10,7 +11,6 @@ class ApplicationPlugin : Plugin<Project> {
         with(target) {
             logger.lifecycle("ApplicationPlugin apply")
             pluginManager.apply("com.android.application")
-
             val buildScriptPath = "${rootDir}/build-script/android_module_build.gradle"
             apply(mutableMapOf("from" to buildScriptPath))
 
@@ -28,12 +28,11 @@ class ApplicationPlugin : Plugin<Project> {
                         res.srcDirs("src/main/res", "src/sample/res")
                         assets.srcDirs("src/main/assets", "src/sample/assets")
                     }
+                }else{
+
                 }
             }
-//            afterEvaluate {
-//                val mergeTask = tasks.create("mergeManifest", MergeManifestTask::class.java)
-//                tasks.findByName("preBuild")?.dependsOn(mergeTask)
-//            }
+            handleDependencies()
         }
 
     }

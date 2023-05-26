@@ -14,9 +14,9 @@ dependencyResolutionManagement {
 }
 rootProject.name = "SycApp"
 include ':app'
-include ':common'
-include ':framework'
-include ':module-user'
-include ':net'
-include ':accessibility'
-include ':permission'
+include ':business-common'
+include ':business-user'
+include ':feature-net'
+include ':feature-accessibility'
+include ':feature-permission'
+include ':feature-framework'

@@ -10,5 +10,4 @@ dependencies {
     implementation libs['okhttp']
     api libs['retrofit']
     api libs['okhttp-logging']
-    api ( project(':framework'))
 }
