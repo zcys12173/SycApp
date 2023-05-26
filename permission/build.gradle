@@ -1,0 +1,10 @@
+plugins {
+    id 'library-plugin'
+}
+android {
+    namespace 'com.syc.mvvm.permission'
+}
+
+dependencies {
+    api ( project(':framework'))
+}

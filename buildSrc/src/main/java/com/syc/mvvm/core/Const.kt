@@ -1,5 +1,7 @@
 package com.syc.mvvm.core
 
-const val COMPILE_SDK = 33
-const val MIN_SDK = 23
-const val TARGET_SDK = 33
+import org.gradle.api.Project
+
+private const val MERGED_MANIFEST_PATH = "generated/manifest/AndroidManifest.xml"
+
+fun getBuildManifestPath(project: Project) = "${project.buildDir.path}/$MERGED_MANIFEST_PATH"

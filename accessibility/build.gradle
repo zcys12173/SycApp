@@ -1,0 +1,12 @@
+plugins {
+    id 'library-plugin'
+//    id 'application-plugin'
+}
+android {
+    namespace 'com.syc.mvvm.accessibility'
+}
+
+dependencies {
+    api ( project(':framework'))
+    implementation ( project(':permission'))
+}

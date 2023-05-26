@@ -6,6 +6,7 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.os.Process
+import androidx.annotation.MainThread
 
 /**
  * 判断是否是主进程
@@ -21,44 +22,68 @@ fun Application.isMainProcess(): Boolean {
 
 
 
+
+
+
 private var activityCount = 0
+typealias AppForegroundChangedListener = (isForeground: Boolean) -> Unit
+private val appForegroundChangedListeners = mutableListOf<AppForegroundChangedListener>()
+private val activityLifecycleCallback = object : Application.ActivityLifecycleCallbacks {
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
+    }
 
-/**
- * 设置前后台切换监听
- */
-fun Application.addForegroundChangedListener(listener: (isForeground: Boolean) -> Unit) {
-    registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
-        override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
-        }
-
-        override fun onActivityStarted(activity: Activity) {
-            if (activityCount == 0) {
-                listener.invoke(true)
+    override fun onActivityStarted(activity: Activity) {
+        if (activityCount == 0) {
+            appForegroundChangedListeners.forEach {
+                it.invoke(true)
             }
-            activityCount++
-
         }
+        activityCount++
 
-        override fun onActivityResumed(activity: Activity) {
+    }
 
-        }
+    override fun onActivityResumed(activity: Activity) {
 
-        override fun onActivityPaused(activity: Activity) {
-        }
+    }
 
-        override fun onActivityStopped(activity: Activity) {
-            activityCount--
-            if (activityCount == 0) {
-                listener.invoke(false)
+    override fun onActivityPaused(activity: Activity) {
+    }
+
+    override fun onActivityStopped(activity: Activity) {
+        activityCount--
+        if (activityCount == 0) {
+            appForegroundChangedListeners.forEach {
+                it.invoke(false)
             }
-
         }
 
-        override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
-        }
+    }
 
-        override fun onActivityDestroyed(activity: Activity) {
-        }
+    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
+    }
 
-    })
+    override fun onActivityDestroyed(activity: Activity) {
+    }
+
+}
+private var hasRegisterCallback = false
+@MainThread
+fun Application.addForegroundChangedListener(listener: AppForegroundChangedListener) {
+    if(appForegroundChangedListeners.contains(listener)){
+        return
+    }
+    appForegroundChangedListeners.add(listener)
+    if(!hasRegisterCallback){
+        hasRegisterCallback = true
+        registerActivityLifecycleCallbacks(activityLifecycleCallback)
+    }
+}
+
+fun Application.removeForegroundChangedListener(listener: AppForegroundChangedListener){
+    appForegroundChangedListeners.remove(listener)
+    if(appForegroundChangedListeners.isEmpty()){
+        unregisterActivityLifecycleCallbacks(activityLifecycleCallback)
+        activityCount = 0
+        hasRegisterCallback = false
+    }
 }

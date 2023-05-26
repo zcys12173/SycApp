@@ -9,4 +9,6 @@ android {
 
 dependencies {
     api ( project(':net'))
+    api ( project(':permission'))
+    api ( project(':accessibility'))
 }

@@ -1,6 +1,7 @@
 package com.syc.mvvm
 
 import com.android.build.api.dsl.ApplicationExtension
+import com.syc.mvvm.core.getBuildManifestPath
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -19,6 +20,8 @@ class ApplicationPlugin : Plugin<Project> {
                 defaultConfig.applicationId = applicationID
                 if (target.name != "app") {
                     defaultConfig.applicationIdSuffix = ".${target.name.replace("-", "_")}"
+                    val manifestPath = getBuildManifestPath(project)
+                    println("manifest path:$manifestPath")
                     sourceSets.getByName("main").apply {
                         manifest.srcFile("src/sample/AndroidManifest.xml")
                         java.srcDirs("src/main/java", "src/sample/java")
@@ -27,7 +30,12 @@ class ApplicationPlugin : Plugin<Project> {
                     }
                 }
             }
+//            afterEvaluate {
+//                val mergeTask = tasks.create("mergeManifest", MergeManifestTask::class.java)
+//                tasks.findByName("preBuild")?.dependsOn(mergeTask)
+//            }
         }
+
     }
 }
 
