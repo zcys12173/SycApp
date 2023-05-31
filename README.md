@@ -11,4 +11,4 @@ Andrid组件化工程（Module可独立运行）
 
 ### AndroidStudio插件
 
-可以安装 [模版插件](https://github.com/zcys12173/ScreenMatchPlugin/blob/main/README.md) ，方便快捷创建Module，减少手动修改
+可以安装 [模版代码插件](https://github.com/zcys12173/ScreenMatchPlugin/blob/main/README.md) ，方便快捷创建模版代码和Module，减少手动修改
