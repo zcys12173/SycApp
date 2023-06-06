@@ -4,4 +4,7 @@
     android:accessibilityFeedbackType="feedbackAllMask"
     android:canRetrieveWindowContent="true"
     android:notificationTimeout="100"
+    android:canRequestTouchExplorationMode="true"
+    android:canRequestEnhancedWebAccessibility="true"
+    android:canRequestFilterKeyEvents="true"
     android:canPerformGestures="true"/>

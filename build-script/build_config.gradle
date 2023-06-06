@@ -1,7 +1,7 @@
 ext {
     APPLICATION_ID = 'com.syc.mvvm.app'
 
-    MIN_SDK_VERSION = 23
+    MIN_SDK_VERSION = 24
 
     TARGET_SDK_VERSION = 33
 
@@ -11,7 +11,7 @@ ext {
 
 def lifecycle_version = "2.5.1"
 def okhttp_version = "4.11.0"
-
+def coil_version = '2.4.0'
 ext.libs = [
         'core-ktx'        : 'androidx.core:core-ktx:1.10.1',
         'appcompat'       : 'androidx.appcompat:appcompat:1.6.1',
@@ -20,10 +20,14 @@ ext.libs = [
         'KRouter'         : 'io.github.zcys12173:KRouter:1.0.0-pre',
         'viewmodel-ktx'   : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
         'gson'            : "com.google.code.gson:gson:2.10.1",
-
+        //网络
         'okhttp'          : "com.squareup.okhttp3:okhttp:$okhttp_version",
         'okhttp-logging'  : "com.squareup.okhttp3:logging-interceptor:$okhttp_version",
         'retrofit'        : "com.squareup.retrofit2:retrofit:2.9.0",
+        //图片
+        'coil'            : "io.coil-kt:coil:$coil_version",
+        'coil_svg'        : "io.coil-kt:coil-svg:$coil_version",
+        'coil_gif'        : "io.coil-kt:coil-gif:$coil_version",
 
 ]
 

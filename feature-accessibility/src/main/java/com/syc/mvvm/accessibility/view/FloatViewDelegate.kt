@@ -3,13 +3,18 @@ package com.syc.mvvm.accessibility.view
 import android.app.Application
 import android.content.Context
 import android.graphics.PixelFormat.RGBA_8888
+import android.media.Image
 import android.os.Build
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewConfiguration
 import android.view.WindowManager
+import android.widget.ImageView
+import androidx.core.view.ViewConfigurationCompat
+import com.syc.mvvm.accessibility.AccessibilityManager
 import com.syc.mvvm.accessibility.R
 import com.syc.mvvm.framework.utils.AppForegroundChangedListener
 import com.syc.mvvm.framework.utils.addForegroundChangedListener
@@ -37,8 +42,8 @@ class FloatViewDelegate(private val context: Context) {
             flags =
                 WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
             format = RGBA_8888
-            height = 80
-            width = 80
+            height = WindowManager.LayoutParams.WRAP_CONTENT
+            width =WindowManager.LayoutParams.WRAP_CONTENT
             gravity = Gravity.START or Gravity.TOP
         }
     }
@@ -48,7 +53,8 @@ class FloatViewDelegate(private val context: Context) {
             .apply {
                 setOnTouchListener(FloatTouchListener())
                 setOnClickListener {
-
+                    it.isSelected = !it.isSelected
+                    AccessibilityManager.canNotify = isSelected
                 }
             }
     }
@@ -98,15 +104,19 @@ class FloatViewDelegate(private val context: Context) {
     inner class FloatTouchListener : View.OnTouchListener {
         private var x = 0f
         private var y = 0f
+        private var isScrolled = false
         override fun onTouch(v: View?, event: MotionEvent?): Boolean {
             when (event?.action) {
                 MotionEvent.ACTION_DOWN -> {
+                    isScrolled = false
                     x = event.rawX
                     y = event.rawY
                 }
-//                MotionEvent.ACTION_UP -> {
-//                    v?.performClick()
-//                }
+                MotionEvent.ACTION_UP -> {
+                    if(!isScrolled){
+                        v?.performClick()
+                    }
+                }
 
                 MotionEvent.ACTION_MOVE -> {
                     val curX = event.rawX
@@ -117,10 +127,13 @@ class FloatViewDelegate(private val context: Context) {
                     y = curY
                     layoutParams.x += newX.toInt()
                     layoutParams.y += newY.toInt()
+                    if(!isScrolled){
+                        isScrolled = (newX > ViewConfiguration.get(context).scaledTouchSlop || newY>ViewConfiguration.get(context).scaledTouchSlop)
+                    }
                     wm.updateViewLayout(floatView, layoutParams)
                 }
             }
-            return false
+            return true
         }
     }
 }

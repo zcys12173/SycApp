@@ -1,0 +1,13 @@
+plugins {
+//    id 'application-plugin'
+    id 'library-plugin'
+}
+android {
+    namespace 'com.syc.mvvm.image'
+}
+
+dependencies {
+    implementation libs['coil']
+    implementation libs['coil_svg']
+    implementation libs['coil_gif']
+}

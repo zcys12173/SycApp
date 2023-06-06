@@ -1,6 +1,0 @@
-plugins {
-    id 'library-plugin'
-}
-android {
-    namespace 'com.syc.mvvm.user'
-}

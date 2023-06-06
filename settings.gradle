@@ -14,9 +14,14 @@ dependencyResolutionManagement {
 }
 rootProject.name = "SycApp"
 include ':app'
+include ':business-tiktok'
+project(':business-tiktok').projectDir = new File(settingsDir.parentFile,'business-tiktok')
+
 include ':business-common'
-include ':business-user'
-include ':feature-net'
+
+
+include ':feature-network'
 include ':feature-accessibility'
 include ':feature-permission'
 include ':feature-framework'
+include ':feature-image'

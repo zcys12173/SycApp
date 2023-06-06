@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.syc.mvvm.accessibility">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <application
         android:name="com.syc.mvvm.framework.base.FrameworkApplication"
         android:allowBackup="true"
@@ -14,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SycApp" >
         <activity
-            android:name="com.syc.mvvm.net.sample.MainActivity"
+            android:name="com.syc.mvvm.tiktok.sample.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
