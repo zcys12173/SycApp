@@ -1,0 +1,6 @@
+R_DEF: Internal format may change without notice
+local
+layout activity_main
+mipmap ic_launcher
+style Base.Theme.SycApp
+style Theme.SycApp

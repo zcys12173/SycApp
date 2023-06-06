@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.syc.mvvm.storage.feature-storage-merged_res-36:/layout_activity_main.xml.flat",
+        "source": "com.syc.mvvm.storage.feature-storage-sample-39:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.syc.mvvm.storage.feature-storage-merged_res-36:/mipmap_ic_launcher.webp.flat",
+        "source": "com.syc.mvvm.storage.feature-storage-sample-39:/mipmap/ic_launcher.webp"
+    }
+]
