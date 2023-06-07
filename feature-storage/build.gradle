@@ -1,6 +1,6 @@
 plugins {
-    id 'application-plugin'
-//    id 'library-plugin'
+//    id 'application-plugin'
+    id 'library-plugin'
 }
 android {
     namespace 'com.syc.mvvm.storage'

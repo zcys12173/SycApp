@@ -12,3 +12,4 @@
 /gradle/buildscript/maven.gradle
 /app/release/
 /aop_plugin/repo/
+*/build
