@@ -2,7 +2,7 @@ package com.syc.mvvm.common.router
 
 
 //path
-const val PATH_LOGIN = "path/user/LoginActivity"
+const val PATH_VERIFY = "path/login/VerifyActivity"
 const val PATH_TIKTOK = "path/tiktok/TiktokActivity"
 
 

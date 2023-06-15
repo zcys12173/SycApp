@@ -38,3 +38,7 @@ fun Project.handleDependencies(){
     }
 
 }
+
+fun Project.addCommonPlugins(){
+    pluginManager.apply("kotlin-kapt")
+}

@@ -41,7 +41,7 @@ class ConvertFactory(private val gson: Gson = Gson()) : Converter.Factory() {
             val typeToken = object : TypeToken<HttpEntity<String>>() {}.type
             val baseEntity = gson.fromJson<HttpEntity<String>>(value.string(), typeToken)
             if(baseEntity.code != 0){
-                throw ServerRespondException(baseEntity.code,baseEntity.message)
+                throw ServerResponseException(baseEntity.code,baseEntity.message)
             }
             return gson.fromJson(baseEntity.data, type)
         }

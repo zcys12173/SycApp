@@ -102,6 +102,8 @@ fun <T : Activity> ViewModel.getActivity(): T? {
     return getVmStoreDelegate()?.getActivity()
 }
 
+val ViewModel.activity: Activity?
+    get() = getActivity()
 /**
  * 关闭Activity
  */

@@ -26,8 +26,7 @@ ext.libs = [
         'retrofit'        : "com.squareup.retrofit2:retrofit:2.9.0",
         //图片
         'coil'            : "io.coil-kt:coil:$coil_version",
-        'coil_svg'        : "io.coil-kt:coil-svg:$coil_version",
-        'coil_gif'        : "io.coil-kt:coil-gif:$coil_version",
-
+        'coil-svg'        : "io.coil-kt:coil-svg:$coil_version",
+        'coil-gif'        : "io.coil-kt:coil-gif:$coil_version",
 ]
 

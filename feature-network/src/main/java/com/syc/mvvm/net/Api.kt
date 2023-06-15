@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 object Api {
     lateinit var retrofit: Retrofit
 
-    fun init(baseUrl:String){
+    fun init(baseUrl:String = "https://www.xiuniyilian.top/"){
         createRetrofit(baseUrl)
     }
 

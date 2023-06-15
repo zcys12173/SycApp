@@ -16,7 +16,8 @@ rootProject.name = "SycApp"
 include ':app'
 include ':business-tiktok'
 project(':business-tiktok').projectDir = new File(settingsDir.parentFile,'business-tiktok')
-
+include ':business-login'
+project(':business-login').projectDir = new File(settingsDir.parentFile,'business-login')
 include ':business-common'
 
 

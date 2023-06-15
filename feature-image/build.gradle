@@ -8,6 +8,6 @@ android {
 
 dependencies {
     implementation libs['coil']
-    implementation libs['coil_svg']
-    implementation libs['coil_gif']
+    implementation libs['coil-svg']
+    implementation libs['coil-gif']
 }
