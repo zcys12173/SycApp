@@ -95,34 +95,28 @@ fun <T : ViewModel> ViewModel.findViewModel(key: String): T? {
     return getVmStoreDelegate()?.findViewModel(key)
 }
 
-/**
- * 获取容器Activity
- */
-fun <T : Activity> ViewModel.getActivity(): T? {
-    return getVmStoreDelegate()?.getActivity()
-}
+val ViewModel.activity : Activity?
+    get() = getVmStoreDelegate()?.getActivity()
 
-val ViewModel.activity: Activity?
-    get() = getActivity()
 /**
  * 关闭Activity
  */
 fun ViewModel.finishActivity() {
-    getActivity<Activity>()?.finish()
+    activity?.finish()
 }
 
 /**
  * 启动Activity
  */
 fun ViewModel.startActivity(intent: Intent) {
-    getActivity<Activity>()?.startActivity(intent)
+    activity?.startActivity(intent)
 }
 
 /**
  * 启动Activity
  */
 fun ViewModel.startActivityForResult(intent: Intent, requestCode: Int) {
-    getActivity<Activity>()?.startActivityForResult(intent, requestCode)
+    activity?.startActivityForResult(intent, requestCode)
 }
 
 /**

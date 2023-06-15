@@ -12,4 +12,5 @@ const val SERVICE_TIKTOK = "TiktokService"
 
 
 //method
-const val GET_USER_NAME = "getUserName"
+const val IS_LOGIN = "isLogin"
+const val CHECK_LOGIN = "checkLogin"

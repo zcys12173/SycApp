@@ -5,11 +5,10 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.syc.mvvm.framework.base.BaseActivity
 import com.syc.mvvm.framework.base.BaseViewModel
-import com.syc.mvvm.framework.base.getActivity
+import com.syc.mvvm.framework.base.activity
 
 /**
  * 检测悬浮窗权限
@@ -20,15 +19,19 @@ fun Context.hasDrawOverlaysPermission() = Settings.canDrawOverlays(this)
 /**
  * 请求悬浮窗权限
  */
-fun Context.requestDrawOverlaysPermission(){
+fun Context.requestDrawOverlaysPermission() {
     Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:${packageName}")).run {
         addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(this)
     }
 }
 
-fun BaseActivity.withPermission(vararg permissions: String, callback:Permission.Callback,requestCode:Int = DEFAULT_PERMISSION_REQUEST_CODE){
-    Permission.requestPermission(this,requestCode, permissions.toMutableList(),callback)
+fun BaseActivity.withPermission(
+    vararg permissions: String,
+    callback: Permission.Callback,
+    requestCode: Int = DEFAULT_PERMISSION_REQUEST_CODE
+) {
+    Permission.requestPermission(this, requestCode, permissions.toMutableList(), callback)
 }
 
 /**
@@ -36,7 +39,7 @@ fun BaseActivity.withPermission(vararg permissions: String, callback:Permission.
  * @param permissions 权限数组
  * @return 返回没有的权限
  */
-fun Context.checkPermissions(vararg permissions:String):Array<String>{
+fun Context.checkPermissions(vararg permissions: String): Array<String> {
     return permissions.filter {
         !checkPermission(it)
     }.toTypedArray()
@@ -45,14 +48,14 @@ fun Context.checkPermissions(vararg permissions:String):Array<String>{
 /**
  * 检测是否有权限
  */
-fun Context.checkPermission(permission:String):Boolean{
-    return ContextCompat.checkSelfPermission(this,permission) ==
+fun Context.checkPermission(permission: String): Boolean {
+    return ContextCompat.checkSelfPermission(this, permission) ==
             PackageManager.PERMISSION_GRANTED
 }
 
 /**
  * BaseViewModel扩展函数,支持权限申请
  */
-fun BaseViewModel.withPermission(vararg permissions: String, callback:Permission.Callback){
-    getActivity<BaseActivity>()?.withPermission(*permissions, callback = callback)
+fun BaseViewModel.withPermission(vararg permissions: String, callback: Permission.Callback) {
+    (activity as? BaseActivity)?.withPermission(*permissions, callback = callback)
 }

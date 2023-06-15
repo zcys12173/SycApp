@@ -37,13 +37,17 @@ class ConvertFactory(private val gson: Gson = Gson()) : Converter.Factory() {
     }
 
     inner class ResponseBodyConverter<T>(private val type: Type) : Converter<ResponseBody, T> {
-        override fun convert(value: ResponseBody): T? {
+        override fun convert(value: ResponseBody): T {
             val typeToken = object : TypeToken<HttpEntity<String>>() {}.type
             val baseEntity = gson.fromJson<HttpEntity<String>>(value.string(), typeToken)
-            if(baseEntity.code != 0){
-                throw ServerResponseException(baseEntity.code,baseEntity.message)
+            if(baseEntity.data == null){
+                throw ServerResponseException(-1, message = "data为空")
             }
-            return gson.fromJson(baseEntity.data, type)
+            try {
+                return gson.fromJson(baseEntity.data, type) as T
+            }catch(e:Exception){
+                throw ServerResponseException(-1, message = "data 解析异常", cause = e)
+            }
         }
     }
 }
