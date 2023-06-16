@@ -16,7 +16,6 @@ dependencyResolutionManagement {
 }
 //配置gradle构建缓存
 apply from:'./build-script/build_cache.gradle'
-println("ClassLoader:${gradle.class.classLoader.hashCode()}")
 
 rootProject.name = "SycApp"
 include ':app'
