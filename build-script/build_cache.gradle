@@ -4,10 +4,10 @@ buildCache{
     local {
         directory = new File(rootDir, "build-cache")
     }
-    remote(AppBuildCache) {
-        enabled = true
-        push = true
-    }
+//    remote(AppBuildCache) {
+//        enabled = true
+//        push = true
+//    }
 }
 class AppBuildCache extends AbstractBuildCache{
 
