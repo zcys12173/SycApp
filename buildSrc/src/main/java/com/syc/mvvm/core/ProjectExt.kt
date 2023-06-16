@@ -18,20 +18,16 @@ fun Project.handleDependencies(){
     if(isAppModule){
         rootProject.subprojects {
             if(it.isBusinessModule){
-                println("${this@handleDependencies.name} module add business module:${it.name}")
                 this@handleDependencies.dependencies.add("implementation",project(":${it.name}"))
             }
         }
     }else if(isBusinessModule){
-        println("${this@handleDependencies.name} module add business module:business-common")
         project.dependencies.add("api",project(":business-common"))
     }else if(isFeatureModule){
-        println("${this@handleDependencies.name} module add business module:feature-framework")
         project.dependencies.add("api",project(":feature-framework"))
     }else if(isCommonModule){
         rootProject.subprojects {
             if(it.isFeatureModule){
-                println("${this@handleDependencies.name} module add business module:${it.name}")
                 this@handleDependencies.dependencies.add("api",project(":${it.name}"))
             }
         }

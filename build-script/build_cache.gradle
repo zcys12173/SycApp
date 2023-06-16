@@ -1,0 +1,41 @@
+buildCache{
+    registerBuildCacheService(AppBuildCache.class, AppBuildCacheFactory.class)
+
+    local {
+        directory = new File(rootDir, "build-cache")
+    }
+    remote(AppBuildCache) {
+        enabled = true
+        push = true
+    }
+}
+class AppBuildCache extends AbstractBuildCache{
+
+}
+class AppBuildCacheFactory implements BuildCacheServiceFactory<AppBuildCache>{
+
+    @Override
+    BuildCacheService createBuildCacheService(AppBuildCache configuration, Describer describer) {
+        println("createBuildCacheService, configuration: ${configuration}, describer: ${describer}")
+        return new AppBuildService()
+    }
+}
+
+class AppBuildService implements BuildCacheService {
+
+    @Override
+    boolean load(BuildCacheKey key, BuildCacheEntryReader reader) throws BuildCacheException {
+        println("load, key: ${key}, reader: ${reader}")
+        return false
+    }
+
+    @Override
+    void store(BuildCacheKey key, BuildCacheEntryWriter writer) throws BuildCacheException {
+        println("store, key: ${key}, writer: ${writer}")
+    }
+
+    @Override
+    void close() throws IOException {
+        println("close")
+    }
+}

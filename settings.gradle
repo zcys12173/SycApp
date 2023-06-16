@@ -1,3 +1,4 @@
+//插件依赖仓库
 pluginManagement {
     repositories {
         google()
@@ -5,6 +6,7 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+//工程依赖仓库
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -12,6 +14,10 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+//配置gradle构建缓存
+apply from:'./build-script/build_cache.gradle'
+println("ClassLoader:${gradle.class.classLoader.hashCode()}")
+
 rootProject.name = "SycApp"
 include ':app'
 include ':business-tiktok'
@@ -27,3 +33,4 @@ include ':feature-permission'
 include ':feature-framework'
 include ':feature-image'
 include ':feature-storage'
+

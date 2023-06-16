@@ -22,18 +22,19 @@ class ApplicationPlugin : Plugin<Project> {
             appendMergeManifestTask()
         }
     }
-    private fun Project.configPlugin(){
+
+    private fun Project.configPlugin() {
         pluginManager.apply("com.android.application")
         pluginManager.apply("io.github.zcys12173.plugin_router")
         addCommonPlugins()
     }
 
-    private fun Project.applyLocalScript(){
+    private fun Project.applyLocalScript() {
         val buildScriptPath = "${rootDir}/build-script/android_module_build.gradle"
         apply(mutableMapOf("from" to buildScriptPath))
     }
 
-    private fun Project.androidConfig(){
+    private fun Project.androidConfig() {
         extensions.findByType(ApplicationExtension::class.java)?.run {
             val applicationID =
                 rootProject.extensions.extraProperties.get("APPLICATION_ID") as String
@@ -52,19 +53,21 @@ class ApplicationPlugin : Plugin<Project> {
         }
     }
 
-    private fun Project.appendMergeManifestTask(){
-        if(!isAppModule){
+    private fun Project.appendMergeManifestTask() {
+        if (!isAppModule) {
             extensions.findByType(AndroidComponentsExtension::class.java)?.run {
-                onVariants {variant->
+                onVariants { variant ->
                     val taskName = "merge${variant.name.capitalize()}Manifest"
-                    val mergeManifestProvider = tasks.register(taskName,MergeManifestTask::class.java){
-                        it.nameSpace.set(variant.namespace)
-                        it.placeHolders.set(variant.manifestPlaceholders)
-                    }
+                    val mergeManifestProvider =
+                        tasks.register(taskName, MergeManifestTask::class.java) {
+                            it.nameSpace.set(variant.namespace)
+                            it.placeHolders.set(variant.manifestPlaceholders)
+                        }
                     variant.artifacts.use(mergeManifestProvider)
                         .wiredWithFiles(
                             MergeManifestTask::mergedManifest,
-                            MergeManifestTask::outputManifest)
+                            MergeManifestTask::outputManifest
+                        )
                         .toTransform(SingleArtifact.MERGED_MANIFEST)
                 }
             }

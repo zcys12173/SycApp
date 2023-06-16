@@ -8,7 +8,6 @@ import org.gradle.api.Project
 class LibraryPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            logger.lifecycle("LibraryPlugin apply")
             pluginManager.apply("com.android.library")
             addCommonPlugins()
             val buildScriptPath = "${rootDir}/build-script/android_module_build.gradle"

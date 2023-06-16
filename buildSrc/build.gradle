@@ -12,11 +12,13 @@ repositories {
 
 
 dependencies {
-//    implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0"
+    implementation gradleApi()
     implementation "com.android.tools.build:gradle-api:8.0.0"
+    //MIN_SDK_VERSION 必须大于等于 24 ，不然依赖以下包会报错
     implementation "com.android.tools.build:manifest-merger:31.0.0"
     implementation "com.android.tools:common:31.0.0"
-    implementation gradleApi()
+    //    implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0"
+
 }
 
 gradlePlugin {
