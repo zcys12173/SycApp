@@ -7,6 +7,15 @@ import android.view.accessibility.AccessibilityNodeInfo
 object AccessibilityManager {
     private val listeners = mutableListOf<AccessibilityListener>()
     internal var canNotify = false
+        set(value) {
+            field = value
+            if(!value){
+                listeners.forEach {
+                    it.onStop()
+                }
+            }
+        }
+
     fun registerListener(listener: AccessibilityListener){
         if(!listeners.contains(listener)){
             listeners.add(listener)
@@ -36,4 +45,6 @@ interface AccessibilityListener {
     fun onServiceConnected(){}
 
     fun onDestroy(){}
+
+    fun onStop(){}
 }
