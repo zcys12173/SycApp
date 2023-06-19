@@ -15,4 +15,5 @@ dependencies {
     api libs['KRouter']
     api libs['viewmodel-ktx']
     api libs['gson']
+    implementation libs['mmkv']
 }
