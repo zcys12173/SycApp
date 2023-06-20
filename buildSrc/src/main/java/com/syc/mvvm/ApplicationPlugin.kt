@@ -4,6 +4,7 @@ import com.android.build.api.artifact.SingleArtifact
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.variant.AndroidComponentsExtension
 import com.syc.mvvm.core.addCommonPlugins
+import com.syc.mvvm.core.applyLocalScript
 import com.syc.mvvm.core.getBuildManifestPath
 import com.syc.mvvm.core.handleDependencies
 import com.syc.mvvm.core.isAppModule
@@ -27,11 +28,6 @@ class ApplicationPlugin : Plugin<Project> {
         pluginManager.apply("com.android.application")
         pluginManager.apply("io.github.zcys12173.plugin_router")
         addCommonPlugins()
-    }
-
-    private fun Project.applyLocalScript() {
-        val buildScriptPath = "${rootDir}/build-script/android_module_build.gradle"
-        apply(mutableMapOf("from" to buildScriptPath))
     }
 
     private fun Project.androidConfig() {

@@ -38,3 +38,10 @@ fun Project.handleDependencies(){
 fun Project.addCommonPlugins(){
     pluginManager.apply("kotlin-kapt")
 }
+
+
+
+fun Project.applyLocalScript() {
+    val buildScriptPath = "${rootDir}/build-script/android_module_build.gradle"
+    apply(mutableMapOf("from" to buildScriptPath))
+}
