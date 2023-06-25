@@ -1,6 +1,22 @@
 package com.syc.mvvm.core
 
 import org.gradle.api.Project
+import org.gradle.api.artifacts.MinimalExternalModuleDependency
+import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.api.provider.Provider
+import org.gradle.plugin.use.PluginDependency
+
+
+fun Project.findLibrary(name:String): Provider<MinimalExternalModuleDependency> {
+     val libs = extensions.getByType(VersionCatalogsExtension::class.java).named("libs")
+    return libs.findLibrary(name).get()
+}
+
+fun Project.findPlugin(name:String): Provider<PluginDependency> {
+    val libs = extensions.getByType(VersionCatalogsExtension::class.java).named("libs")
+    return libs.findPlugin(name).get()
+}
+
 
 fun Project.handleDependencies() {
     when (type) {
