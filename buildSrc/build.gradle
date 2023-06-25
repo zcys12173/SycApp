@@ -1,8 +1,8 @@
+
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.8.0'
+    id 'org.jetbrains.kotlin.jvm' version '1.8.20'
     id 'java-gradle-plugin'
 }
-
 
 repositories {
     google()
@@ -19,6 +19,7 @@ dependencies {
     def androidToolsVersion = "31.0.0"
     implementation "com.android.tools.build:manifest-merger:${androidToolsVersion}"
     implementation "com.android.tools:common:${androidToolsVersion}"
+//    implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.20"
 }
 
 gradlePlugin {
