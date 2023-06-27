@@ -30,13 +30,13 @@ class ApplicationPlugin : Plugin<Project> {
     }
 
     private fun Project.androidConfig() {
-        extensions.findByType(ApplicationExtension::class.java)?.run {
+        extensions.configure(ApplicationExtension::class.java){ appExtension ->
             val applicationID =
                 rootProject.extensions.extraProperties.get("APPLICATION_ID") as String
-            defaultConfig.applicationId = applicationID
+            appExtension.defaultConfig.applicationId = applicationID
             if (type != ProjectType.APP) {
-                defaultConfig.applicationIdSuffix = ".${name.replace("-", "_")}"
-                sourceSets.getByName("main").apply {
+                appExtension.defaultConfig.applicationIdSuffix = ".${name.replace("-", "_")}"
+                appExtension.sourceSets.getByName("main").apply {
                     manifest.srcFile("src/sample/AndroidManifest.xml")
                     java.srcDirs("src/main/java", "src/sample/java")
                     res.srcDirs("src/main/res", "src/sample/res")
@@ -48,8 +48,8 @@ class ApplicationPlugin : Plugin<Project> {
 
     private fun Project.appendMergeManifestTask() {
         if (type != ProjectType.APP) {
-            extensions.findByType(AndroidComponentsExtension::class.java)?.run {
-                onVariants { variant ->
+            extensions.configure(AndroidComponentsExtension::class.java){ androidExtension->
+                androidExtension.onVariants { variant ->
                     val taskName = "merge${variant.name.capitalize()}Manifest"
                     val mergeManifestProvider =
                         tasks.register(taskName, MergeManifestTask::class.java) {
