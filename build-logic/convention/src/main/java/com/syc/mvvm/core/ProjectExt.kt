@@ -5,15 +5,14 @@ import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.provider.Provider
 import org.gradle.plugin.use.PluginDependency
-import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.archivesName
 
 
-fun Project.findLibrary(name:String): Provider<MinimalExternalModuleDependency> {
-     val libs = extensions.getByType(VersionCatalogsExtension::class.java).named("libs")
+fun Project.findLibrary(name: String): Provider<MinimalExternalModuleDependency> {
+    val libs = extensions.getByType(VersionCatalogsExtension::class.java).named("libs")
     return libs.findLibrary(name).get()
 }
 
-fun Project.findPlugin(name:String): Provider<PluginDependency> {
+fun Project.findPlugin(name: String): Provider<PluginDependency> {
     val libs = extensions.getByType(VersionCatalogsExtension::class.java).named("libs")
     return libs.findPlugin(name).get()
 }
