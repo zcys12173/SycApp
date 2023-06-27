@@ -1,0 +1,28 @@
+
+plugins {
+    alias libs.plugins.kotlin.jvm
+    id 'java-gradle-plugin'
+}
+
+dependencies {
+    compileOnly gradleApi()
+    compileOnly libs.android.gradlePlugin
+    compileOnly libs.android.tool.mergeManifest
+    compileOnly libs.android.tool.common
+    compileOnly libs.kotlin.gradlePlugin
+}
+
+gradlePlugin {
+    plugins {
+
+        applicationPlugin {
+            id  = 'application-plugin'
+            implementationClass = 'com.syc.mvvm.ApplicationPlugin'
+        }
+
+        libraryPlugin {
+            id  = 'library-plugin'
+            implementationClass = 'com.syc.mvvm.LibraryPlugin'
+        }
+    }
+}

@@ -1,5 +1,6 @@
 //插件依赖仓库
 pluginManagement {
+    includeBuild('build-logic')
     repositories {
         google()
         mavenCentral()
@@ -15,21 +16,19 @@ dependencyResolutionManagement {
     }
 }
 //配置gradle构建缓存
-apply from:'./build-script/build_cache.gradle'
+apply from:'./build-script/build_cache_setting.gradle'
 
 rootProject.name = "SycApp"
 include ':app'
-include ':business-tiktok'
-project(':business-tiktok').projectDir = new File(settingsDir.parentFile,'business-tiktok')
-include ':business-login'
-project(':business-login').projectDir = new File(settingsDir.parentFile,'business-login')
-include ':business-common'
+include ':feature:tiktok'
+include ':feature:login'
 
 
-include ':feature-network'
-include ':feature-accessibility'
-include ':feature-permission'
-include ':feature-framework'
-include ':feature-image'
-include ':feature-storage'
-
+include ':core:common'
+include ':core:network'
+include ':core:accessibility'
+include ':core:permission'
+include ':core:network'
+include ':core:framework'
+include ':core:image'
+include ':core:storage'

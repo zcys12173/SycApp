@@ -4,6 +4,7 @@ kotlin = "1.8.20"
 screenMatchPlugin = "1.0.2"
 routerPlugin = "1.0.0-pre"
 kotlinKspPlugin = "1.8.20-1.0.10"
+androidTools = "31.0.0"
 
 androidXCore = "1.10.1"
 androidxAppCompat = "1.6.1"
@@ -32,6 +33,11 @@ coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 coil-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil" }
 coil-gif = { group = "io.coil-kt", name = "coil-gif", version.ref = "coil" }
 krouter = { group = "io.github.zcys12173", name = "KRouter", version.ref = "krouter" }
+
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+android-tool-mergeManifest = { group = "com.android.tools.build", name = "manifest-merger", version.ref = "androidTools" }
+android-tool-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }

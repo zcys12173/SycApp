@@ -1,5 +1,5 @@
 buildscript {
-    apply from: './build-script/build_config.gradle'
+    apply from: './build-script/android_config.gradle'
 }
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {

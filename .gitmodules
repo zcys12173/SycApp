@@ -1,6 +1,6 @@
 [submodule "business-tiktok"]
-	path = ../business-tiktok
+	path = ./feature/tiktok
 	url = https://gitee.com/zcys12173/business-tiktok
 [submodule "business-login"]
-	path = ../business-login
+	path = ./feature/login
 	url = https://gitee.com/zcys12173/business-login.git

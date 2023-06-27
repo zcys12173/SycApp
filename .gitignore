@@ -7,10 +7,9 @@
 /captures
 .externalNativeBuild
 .cxx
-/gradlew
-/gradlew.bat
 /gradle/buildscript/maven.gradle
 /app/release/
 /aop_plugin/repo/
 */build
 /build-cache/
+/feature/
