@@ -10,6 +10,7 @@ dependencies {
     compileOnly libs.android.tool.mergeManifest
     compileOnly libs.android.tool.common
     compileOnly libs.kotlin.gradlePlugin
+    compileOnly libs.kotlin.stdlib
 }
 
 gradlePlugin {
