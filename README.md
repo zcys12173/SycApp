@@ -9,6 +9,8 @@ Android组件化工程（Module可独立运行）
 5. minSDK：24
 
 ### 工程结构
+- [build-logic] 通用构建逻辑
+- [build-script] 通用构建脚本
 - [app] 主工程
 - [feature] 业务通用模块 
   - [feature-common] 登录模块
