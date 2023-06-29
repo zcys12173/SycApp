@@ -20,11 +20,7 @@ apply from:'./build-script/build_cache_setting.gradle'
 
 rootProject.name = "SycApp"
 include ':app'
-include ':feature:tiktok'
-include ':feature:login'
 
-
-include ':core:common'
 include ':core:network'
 include ':core:accessibility'
 include ':core:permission'
@@ -32,3 +28,7 @@ include ':core:network'
 include ':core:framework'
 include ':core:image'
 include ':core:storage'
+
+include ':feature:common'
+include ':feature:tiktok'
+include ':feature:login'

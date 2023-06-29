@@ -18,7 +18,7 @@ fun Project.handleDependencies() {
         }
 
         ProjectType.FEATURE -> {
-            project.dependencies.add("api", project(":core:common"))
+            project.dependencies.add("api", project(":feature:common"))
         }
 
         ProjectType.COMMON -> {

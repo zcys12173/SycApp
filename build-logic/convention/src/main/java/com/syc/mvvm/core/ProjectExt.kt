@@ -21,9 +21,9 @@ val Project.type: ProjectType
     get() {
         return when {
             path == ":app" -> ProjectType.APP
-            path.startsWith(":feature") -> ProjectType.FEATURE
-            path == ":core:common" -> ProjectType.COMMON
+            path == ":feature:common" -> ProjectType.COMMON
             path == ":core:framework" -> ProjectType.FRAMEWORK
+            path.startsWith(":feature") -> ProjectType.FEATURE
             else -> ProjectType.CORE
         }
     }

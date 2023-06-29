@@ -12,4 +12,5 @@
 /aop_plugin/repo/
 */build
 /build-cache/
-/feature/
+/feature/login/
+/feature/tiktok/
