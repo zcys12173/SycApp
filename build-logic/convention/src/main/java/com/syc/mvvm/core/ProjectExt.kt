@@ -17,54 +17,6 @@ fun Project.findPlugin(name: String): Provider<PluginDependency> {
     return libs.findPlugin(name).get()
 }
 
-
-fun Project.handleDependencies() {
-    when (type) {
-        ProjectType.APP -> {
-            rootProject.subprojects {
-                if (it.type == ProjectType.FEATURE && it.subprojects.isEmpty()) {
-                    this@handleDependencies.dependencies.add(
-                        "implementation",
-                        project(":${it.path}")
-                    )
-                }
-            }
-        }
-
-        ProjectType.FEATURE -> {
-            project.dependencies.add("api", project(":core:common"))
-        }
-
-        ProjectType.COMMON -> {
-            rootProject.subprojects {
-                if (it.type == ProjectType.CORE && it.subprojects.isEmpty()) {
-                    this@handleDependencies.dependencies.add("api", project(":${it.path}"))
-                }
-            }
-        }
-
-        ProjectType.CORE -> {
-            project.dependencies.add("api", project(":core:framework"))
-        }
-
-        ProjectType.FRAMEWORK -> {
-            //do nothing
-        }
-    }
-}
-
-fun Project.addCommonPlugins() {
-//    pluginManager.apply("com.google.devtools.ksp")
-    pluginManager.apply("kotlin-kapt")
-    pluginManager.apply("org.jetbrains.kotlin.android")
-}
-
-
-fun Project.applyLocalScript() {
-    val buildScriptPath = "${rootDir}/build-script/android_module_build.gradle"
-    apply(mutableMapOf("from" to buildScriptPath))
-}
-
 val Project.type: ProjectType
     get() {
         return when {

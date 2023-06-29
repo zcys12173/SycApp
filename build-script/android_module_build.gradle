@@ -1,11 +1,10 @@
 android {
-    compileSdkVersion COMPILE_SDK_VERSION
+    compileSdkVersion 33
     defaultConfig {
-        minSdkVersion MIN_SDK_VERSION
-        targetSdkVersion TARGET_SDK_VERSION
+        minSdkVersion 24
+        targetSdkVersion 33
         versionCode VERSION_CODE.toInteger()
         versionName VERSION_NAME
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -15,14 +14,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = '17'
-        languageVersion = '2.0'
-    }
+
     dataBinding {
         enabled = true
     }

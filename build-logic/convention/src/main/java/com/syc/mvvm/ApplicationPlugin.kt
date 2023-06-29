@@ -3,10 +3,12 @@ package com.syc.mvvm
 import com.android.build.api.artifact.SingleArtifact
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.variant.AndroidComponentsExtension
+import com.syc.mvvm.core.APPLICATION_ID
 import com.syc.mvvm.core.ProjectType
-import com.syc.mvvm.core.addCommonPlugins
-import com.syc.mvvm.core.applyLocalScript
-import com.syc.mvvm.core.handleDependencies
+import com.syc.mvvm.core.config.addCommonPlugins
+import com.syc.mvvm.core.config.applyLocalScript
+import com.syc.mvvm.core.config.configKotlinAndroid
+import com.syc.mvvm.core.config.handleDependencies
 import com.syc.mvvm.core.tasks.MergeManifestTask
 import com.syc.mvvm.core.type
 import org.gradle.api.Plugin
@@ -20,6 +22,7 @@ class ApplicationPlugin : Plugin<Project> {
             applyLocalScript()
             androidConfig()
             appendMergeManifestTask()
+            configKotlinAndroid()
         }
     }
 
@@ -30,10 +33,8 @@ class ApplicationPlugin : Plugin<Project> {
     }
 
     private fun Project.androidConfig() {
-        extensions.configure(ApplicationExtension::class.java){ appExtension ->
-            val applicationID =
-                rootProject.extensions.extraProperties.get("APPLICATION_ID") as String
-            appExtension.defaultConfig.applicationId = applicationID
+        extensions.configure(ApplicationExtension::class.java) { appExtension ->
+            appExtension.defaultConfig.applicationId = APPLICATION_ID
             if (type != ProjectType.APP) {
                 appExtension.defaultConfig.applicationIdSuffix = ".${name.replace("-", "_")}"
                 appExtension.sourceSets.getByName("main").apply {
@@ -48,7 +49,7 @@ class ApplicationPlugin : Plugin<Project> {
 
     private fun Project.appendMergeManifestTask() {
         if (type != ProjectType.APP) {
-            extensions.configure(AndroidComponentsExtension::class.java){ androidExtension->
+            extensions.configure(AndroidComponentsExtension::class.java) { androidExtension ->
                 androidExtension.onVariants { variant ->
                     val taskName = "merge${variant.name.capitalize()}Manifest"
                     val mergeManifestProvider =
