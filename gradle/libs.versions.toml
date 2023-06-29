@@ -1,9 +1,9 @@
 [versions]
-androidGradlePlugin = "8.0.0"
-kotlin = "1.8.20"
+androidGradlePlugin = "8.0.2"
+kotlin = "1.8.22"
+kotlinKspPlugin = "1.8.22-1.0.10"
 screenMatchPlugin = "1.0.2"
 routerPlugin = "1.0.0-pre"
-kotlinKspPlugin = "1.8.20-1.0.10"
 androidTools = "31.0.0"
 
 androidXCore = "1.10.1"
@@ -33,6 +33,7 @@ coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 coil-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil" }
 coil-gif = { group = "io.coil-kt", name = "coil-gif", version.ref = "coil" }
 krouter = { group = "io.github.zcys12173", name = "KRouter", version.ref = "krouter" }
+kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }

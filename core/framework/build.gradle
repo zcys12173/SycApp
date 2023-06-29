@@ -16,6 +16,7 @@ dependencies {
     api libs.krouter
     api libs.viewmodel.ktx
     api libs.gson
+    api libs.kotlin.stdlib
     implementation libs.tencent.mmkv
 }
 
