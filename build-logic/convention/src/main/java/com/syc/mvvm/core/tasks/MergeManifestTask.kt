@@ -38,7 +38,7 @@ abstract class MergeManifestTask : DefaultTask() {
         invoker.addAllowedNonUniqueNamespace(nameSpace.get())
         val report = invoker.merge()
         println(report.reportString)
-        if (report.result == MergingReport.Result.SUCCESS) {
+        if (report.result.isSuccess) {
             val content = report.getMergedDocument(MergingReport.MergedManifestKind.MERGED)
             outputManifest.get().asFile.writeText(content)
             println("merge manifest success")
