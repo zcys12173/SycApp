@@ -8,13 +8,13 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 fun Project.configKotlinAndroid(){
     extensions.configure(CommonExtension::class.java){
         it.compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_17
-            targetCompatibility = JavaVersion.VERSION_17
+            sourceCompatibility = JavaVersion.VERSION_1_8
+            targetCompatibility = JavaVersion.VERSION_1_8
         }
     }
     tasks.withType(KotlinCompile::class.java){
         it.kotlinOptions {
-            jvmTarget = "17"
+            jvmTarget = "1.8"
 //            languageVersion = "2.0"
         }
     }
