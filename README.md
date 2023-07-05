@@ -33,4 +33,4 @@ plugins {
 
 ### AndroidStudio插件
 
-可以安装 [模版代码插件](https://github.com/zcys12173/TemplatePlugin) ，方便快捷创建模版代码和Module，减少手动修改
+可以安装 [模版代码插件](https://github.com/zcys12173/TemplatePlugin) ，方便快捷创建模版代码,提升开发效率
