@@ -1,8 +1,10 @@
 package com.syc.mvvm
 
+import com.android.build.api.artifact.ScopedArtifact
 import com.android.build.api.artifact.SingleArtifact
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.variant.AndroidComponentsExtension
+import com.android.build.api.variant.ScopedArtifacts
 import com.syc.mvvm.core.APPLICATION_ID
 import com.syc.mvvm.core.ProjectType
 import com.syc.mvvm.core.config.addCommonPlugins
@@ -10,6 +12,7 @@ import com.syc.mvvm.core.config.applyLocalScript
 import com.syc.mvvm.core.config.configKotlinAndroid
 import com.syc.mvvm.core.config.handleDependencies
 import com.syc.mvvm.core.tasks.MergeManifestTask
+import com.syc.mvvm.core.tasks.MyTransformTask
 import com.syc.mvvm.core.type
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -23,11 +26,14 @@ class ApplicationPlugin : Plugin<Project> {
             androidConfig()
             appendMergeManifestTask()
             configKotlinAndroid()
+
+
         }
     }
 
     private fun Project.configPlugin() {
         pluginManager.apply("com.android.application")
+        registerTransformTask()
         pluginManager.apply("io.github.zcys12173.plugin_router")
         addCommonPlugins()
     }
@@ -67,5 +73,26 @@ class ApplicationPlugin : Plugin<Project> {
             }
         }
     }
+
+    private fun Project.registerTransformTask() {
+        extensions.configure(AndroidComponentsExtension::class.java) { androidExtension ->
+            androidExtension.onVariants { variant ->
+                val taskName = "MyTransform${variant.buildType?.capitalize()}${variant.flavorName?.capitalize()}Task"
+                val taskProvider = tasks.register(
+                    taskName,
+                    MyTransformTask::class.java
+                )
+                variant.artifacts.forScope(ScopedArtifacts.Scope.ALL)
+                    .use(taskProvider)
+                    .toTransform(
+                        ScopedArtifact.CLASSES,
+                        MyTransformTask::allJars,
+                        MyTransformTask::allDirectories,
+                        MyTransformTask::output
+                    )
+            }
+        }
+    }
+
 }
 
