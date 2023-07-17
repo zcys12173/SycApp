@@ -29,6 +29,8 @@ class ApplicationPlugin : Plugin<Project> {
         }
     }
 
+
+
     private fun Project.configPlugin() {
         pluginManager.apply("com.android.application")
         registerTransformTask()
