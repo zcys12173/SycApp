@@ -10,6 +10,7 @@ import androidx.lifecycle.OnLifecycleEvent
 
 /**
  * 延迟执行
+ * @param lifecycle 如果传入了lifecycle，那么在destroy时，会自动取消延迟执行
  */
 class DelayCall(lifecycle: Lifecycle? = null, looper: Looper = Looper.getMainLooper()):LifecycleObserver {
     private val handler = Handler(looper)
