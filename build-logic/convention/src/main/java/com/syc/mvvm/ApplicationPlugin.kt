@@ -26,8 +26,6 @@ class ApplicationPlugin : Plugin<Project> {
             androidConfig()
             appendMergeManifestTask()
             configKotlinAndroid()
-
-
         }
     }
 
