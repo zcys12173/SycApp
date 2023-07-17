@@ -1,16 +1,9 @@
-/*
- * Copyright (c) 2021. Spark Programming
- * All rights reserved.
- */
-
 package com.syc.mvvm.framework.base
 
 import android.app.Activity
 import android.content.Intent
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
-import cn.huohua.programming.framework.mvvm.ViewModelStoreDelegate
-import cn.huohua.programming.framework.mvvm.toKey
 import java.util.*
 
 

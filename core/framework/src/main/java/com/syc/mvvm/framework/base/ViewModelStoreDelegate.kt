@@ -1,4 +1,4 @@
-package cn.huohua.programming.framework.mvvm
+package com.syc.mvvm.framework.base
 
 import android.app.Activity
 import androidx.fragment.app.Fragment
