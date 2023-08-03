@@ -12,8 +12,8 @@ Android组件化工程（Module可独立运行）
 - [build-logic] 通用构建逻辑
 - [build-script] 通用构建脚本
 - [app] 主工程
-- [feature] 业务通用模块 
-  - [feature-common] 登录模块
+- [feature] 业务模块 
+  - [feature-common] 通用模块
 - [core] 通用基础模块
   - [accessibility] 无障碍模块
   - [image] 图片模块
