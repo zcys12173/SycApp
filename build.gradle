@@ -8,3 +8,10 @@ plugins {
     alias libs.plugins.screenMatch apply false
     alias libs.plugins.routerPlugin apply false
 }
+
+allprojects{
+
+    if(it.name == "network"){
+        it.version = "1.0.0.1"  //使用远端依赖
+    }
+}

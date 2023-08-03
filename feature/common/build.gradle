@@ -2,6 +2,8 @@ plugins {
     id 'library-plugin'
 }
 
+group = "com.syc.mvvm"
+
 android {
     namespace 'com.syc.mvvm.common'
 }
