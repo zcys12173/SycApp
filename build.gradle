@@ -17,7 +17,7 @@ allprojects {
     *
     * 1.如果没有配置，则工程依赖方式为本地module依赖，否则为远端依赖方式(依赖的版本就是当前配置的版本)
     *
-    * 2. 当发布新的module的时候，使用次版本号
+    * 2. 当发布新的module的时候，使用此版本号
     */
     switch (it.name){
         case "login":

@@ -36,9 +36,12 @@ plugins {
 可以安装 [模版代码插件](https://github.com/zcys12173/TemplatePlugin) ，方便快捷创建模版代码,提升开发效率
 
 ### Module远端依赖&发布
-工程支持发布本地module到maven私服  
+工程支持发布本地module到maven私服
 1. 配置本地maven.properties  
-   工程根目录下创建`maven.properties`文件，配置内容如下
+
+   如果本地没有配置maven.properties，工程依赖全部使用本地依赖方式。 
+
+   工程根目录下创建`maven.properties`文件，配置内容如下：
    
    ```properties
    snapshotUrl=https://packages.aliyun.com/maven/repository/2295471-snapshot-ulWqyW/
@@ -47,14 +50,16 @@ plugins {
    password=*****
    ```
    
-3. 如何切换remote/local依赖  
+2. 如何切换remote/local依赖  
+
    根目录 `build.gradle`中配置工程版本，如果有版本号，则使用远端依赖，没有的话使用本地依赖。参考`build.gradle`示例
 
-4. 如何发布  
+3. 如何发布  
+
    发布到maven的`groupId`为`Project.group`，`version`为`Project.version`。在根目录的`build.gradle中配置`,`artifactId`为`Project.name`（插件内自动处理，无需手动配置）。如何配置参考 `build.gradle`示例。
-  
-   
-5. `build.gradle`示例
+
+4. `build.gradle`示例  
+
    ```gradle
    allprojects {
     //maven groupId
