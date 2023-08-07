@@ -5,32 +5,40 @@ import com.syc.mvvm.core.type
 import org.gradle.api.Project
 
 fun Project.handleDependencies() {
+    val addDependency = { path:String,configurationName:String->
+        val subProject = rootProject.project(path)
+        val projectVersion = subProject.version
+        if(projectVersion == "unspecified"){
+//            println("depend $path from local")
+            project.dependencies.add(configurationName, subProject)
+        }else{
+//            println("depend $path from remote")
+            project.dependencies.add(configurationName,"$group:${subProject.name}:$projectVersion")
+        }
+    }
     when (type) {
         ProjectType.APP -> {
             rootProject.subprojects {
                 if (it.type == ProjectType.FEATURE && it.subprojects.isEmpty()) {
-                    this@handleDependencies.dependencies.add(
-                        "implementation",
-                        project(":${it.path}")
-                    )
+                    addDependency(":${it.path}","implementation")
                 }
             }
         }
 
         ProjectType.FEATURE -> {
-            project.dependencies.add("api", project(":feature:common"))
+            addDependency(":feature:common","api")
         }
 
         ProjectType.COMMON -> {
             rootProject.subprojects {
                 if (it.type == ProjectType.CORE && it.subprojects.isEmpty()) {
-                    this@handleDependencies.dependencies.add("api", project(":${it.path}"))
+                    addDependency(":${it.path}","api")
                 }
             }
         }
 
         ProjectType.CORE -> {
-            project.dependencies.add("api", project(":core:framework"))
+            addDependency(":core:framework","api")
         }
 
         ProjectType.FRAMEWORK -> {

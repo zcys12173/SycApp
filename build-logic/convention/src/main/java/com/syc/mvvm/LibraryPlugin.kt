@@ -2,6 +2,7 @@ package com.syc.mvvm
 
 import com.syc.mvvm.core.config.addCommonPlugins
 import com.syc.mvvm.core.config.applyLocalScript
+import com.syc.mvvm.core.config.applyMaven
 import com.syc.mvvm.core.config.configKotlinAndroid
 import com.syc.mvvm.core.config.handleDependencies
 import org.gradle.api.Plugin
@@ -13,6 +14,7 @@ class LibraryPlugin : Plugin<Project> {
             pluginManager.apply("com.android.library")
             addCommonPlugins()
             applyLocalScript()
+            applyMaven()
             handleDependencies()
             configKotlinAndroid()
         }

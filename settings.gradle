@@ -1,3 +1,5 @@
+import org.gradle.api.initialization.resolve.RepositoriesMode
+
 //插件依赖仓库
 pluginManagement {
     includeBuild('build-logic')
@@ -10,13 +12,47 @@ pluginManagement {
 //工程依赖仓库
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    var snapshotUrl = ""
+    var releaseUrl = ""
+    var mavenUserName = ""
+    var mavenPassword = ""
+    var properties = new Properties()
+    var mavenFile = new File(settingsDir, "maven.properties")
+    if (mavenFile.exists()) {
+        mavenFile.withInputStream {
+            properties.load(it)
+        }
+        snapshotUrl = properties.getProperty("snapshotUrl")
+        releaseUrl = properties.getProperty("releaseUrl")
+        mavenUserName = properties.getProperty("userName")
+        mavenPassword = properties.getProperty("password")
+    }
+
     repositories {
         google()
         mavenCentral()
+        if (!snapshotUrl.isEmpty()) {
+            maven {
+                url = snapshotUrl
+                credentials {
+                    username = mavenUserName
+                    password = mavenPassword
+                }
+            }
+        }
+        if (!releaseUrl.isEmpty()) {
+            maven {
+                url = releaseUrl
+                credentials {
+                    username = mavenUserName
+                    password = mavenPassword
+                }
+            }
+        }
     }
 }
 //配置gradle构建缓存
-apply from:'./build-script/build_cache_setting.gradle'
+apply from: './build-script/build_cache_setting.gradle'
 
 rootProject.name = "SycApp"
 include ':app'

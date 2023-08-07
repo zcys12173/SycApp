@@ -9,9 +9,43 @@ plugins {
     alias libs.plugins.routerPlugin apply false
 }
 
-allprojects{
-
-    if(it.name == "network"){
-        it.version = "1.0.0.1"  //使用远端依赖
+allprojects {
+    //maven groupId
+    it.group="com.syc.mvvm.libs"
+    /*
+    * 工程版本
+    *
+    * 1.如果没有配置，则工程依赖方式为本地module依赖，否则为远端依赖方式(依赖的版本就是当前配置的版本)
+    *
+    * 2. 当发布新的module的时候，使用次版本号
+    */
+    switch (it.name){
+        case "login":
+//            it.version = "1.0.0.3-snapshot"
+            break
+        case "tiktok":
+//            it.version = "1.0.0.3-snapshot"
+            break
+        case "common":
+//            it.version = "1.0.0.2-snapshot"
+            break
+        case "image":
+//            it.version = "1.0.0.2-snapshot"
+            break
+        case "network":
+//            it.version = "1.0.0.1-snapshot"
+            break
+        case "permission":
+//            it.version = "1.0.0.1-snapshot"
+            break
+        case "storage":
+//            it.version = "1.0.0.2-snapshot"
+            break
+        case "accessibility":
+//            it.version = "1.0.0.2-snapshot"
+            break
+        case "framework":
+//            it.version = "1.0.0.1-snapshot"
+            break
     }
 }

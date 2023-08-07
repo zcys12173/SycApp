@@ -44,12 +44,12 @@ abstract class MyTransformTask : DefaultTask() {
                 )
             )
         )
-        println("Transform输出路径:${output.get().asFile.path}")
+//        println("Transform输出路径:${output.get().asFile.path}")
         allJars.get().forEach { file ->
-            println("处理Jar文件：${file.asFile.absolutePath}")
+//            println("处理Jar文件：${file.asFile.absolutePath}")
             val jarFile = JarFile(file.asFile)
             jarFile.entries().iterator().forEach { jarEntry ->
-                println("处理Jar 内部文件：${jarEntry.name}")
+//                println("处理Jar 内部文件：${jarEntry.name}")
                 if (jarEntry.name.shouldProcessClass()) {
                     jarFile.getInputStream(jarEntry).use {
                         val classReader = ClassReader(it)
@@ -58,9 +58,14 @@ abstract class MyTransformTask : DefaultTask() {
                         val options = ClassReader.SKIP_DEBUG or ClassReader.SKIP_FRAMES
                         classReader.accept(cv, options)
                         val bytes = classWriter.toByteArray()
-                        jarOutput.putNextEntry(JarEntry(jarEntry.name))
-                        jarOutput.write(bytes)
-                        jarOutput.closeEntry()
+                        try {
+                            jarOutput.putNextEntry(JarEntry(jarEntry.name))
+                            jarOutput.write(bytes)
+                        }catch (e:Exception){
+                            //do nothing
+                        }finally {
+                            jarOutput.closeEntry()
+                        }
                     }
                 }
 
@@ -71,7 +76,7 @@ abstract class MyTransformTask : DefaultTask() {
         allDirectories.get().forEach { directory ->
             directory.asFile.walk().forEach { file ->
                 if (file.isFile) {
-                    println("开始处理文件：${file.path}")
+//                    println("开始处理文件：${file.path}")
                     val relativePath = directory.asFile.toURI().relativize(file.toURI()).path
                     jarOutput.putNextEntry(JarEntry(relativePath.replace(File.separatorChar, '/')))
                     file.inputStream().use {

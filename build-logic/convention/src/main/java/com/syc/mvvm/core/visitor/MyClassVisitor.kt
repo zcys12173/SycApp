@@ -12,7 +12,6 @@ class MyClassVisitor(visitor: ClassVisitor):ClassVisitor(Opcodes.ASM7,visitor){
         superName: String?,
         interfaces: Array<out String>?
     ) {
-        println("scan class $name")
         super.visit(version, access, name, signature, superName, interfaces)
     }
 }
