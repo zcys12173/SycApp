@@ -1,20 +1,22 @@
 package com.syc.mvvm.core.config
 
 import com.syc.mvvm.core.ProjectType
+import com.syc.mvvm.core.isVersionValid
 import com.syc.mvvm.core.type
 import org.gradle.api.Project
 
 fun Project.handleDependencies() {
     val addDependency = { path:String,configurationName:String->
-        val subProject = rootProject.project(path)
-        val projectVersion = subProject.version
-        if(projectVersion == "unspecified"){
-//            println("depend $path from local")
-            project.dependencies.add(configurationName, subProject)
-        }else{
-//            println("depend $path from remote")
-            project.dependencies.add(configurationName,"$group:${subProject.name}:$projectVersion")
+        rootProject.project(path).let {subProject ->
+            if(!subProject.isVersionValid() || subProject.description != "REMOTE"){
+//                println("depend $path from local")
+                project.dependencies.add(configurationName, subProject)
+            }else{
+//                println("depend $path from remote")
+                project.dependencies.add(configurationName,"$group:${subProject.name}:${subProject.version}")
+            }
         }
+
     }
     when (type) {
         ProjectType.APP -> {

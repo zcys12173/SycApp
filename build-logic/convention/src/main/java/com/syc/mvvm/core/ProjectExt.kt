@@ -6,7 +6,9 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.provider.Provider
 import org.gradle.plugin.use.PluginDependency
 
-
+fun Project.isVersionValid():Boolean{
+    return version != "unspecified" && version.toString().isNotEmpty()
+}
 fun Project.findLibrary(name: String): Provider<MinimalExternalModuleDependency> {
     val libs = extensions.getByType(VersionCatalogsExtension::class.java).named("libs")
     return libs.findLibrary(name).get()

@@ -10,42 +10,59 @@ plugins {
 }
 
 allprojects {
-    //maven groupId
-    it.group="com.syc.mvvm.libs"
+
     /*
-    * 工程版本
+    * 配置Project的group、version、description，主要用于工程依赖和仓库发布
     *
-    * 1.如果没有配置，则工程依赖方式为本地module依赖，否则为远端依赖方式(依赖的版本就是当前配置的版本)
+    * Project.group：本地Module发布到maven仓库的GroupId、本地依赖远端module的仓库的GroupId
     *
-    * 2. 当发布新的module的时候，使用此版本号
+    * Project.version：本地Module发布到maven仓库的版本号、本地依赖远端module的的版本号
+    *
+    * Project.description：控制module的依赖方式，LOCAL:本地依赖，REMOTE：远端依赖
+    *
+    * Project.name：本地Module发布到maven仓库的名称、本地依赖远端module的仓库的名称
+    *
+    * 发布&远端依赖的maven配置：group:name:version;（参考MavenConfig.kt,ProjectDependenciesConfig.kt）
+    *
+    * 注：如果没有配置version则会强制使用本地依赖
     */
-    switch (it.name){
+    it.group = "com.syc.mvvm.libs"
+    switch (it.name) {
         case "login":
-//            it.version = "1.0.0.3-snapshot"
+            it.version = "1.0.0.3-snapshot" //版本号
+            it.description = "REMOTE"       //依赖方式，LOCAL:本地依赖，REMOTE：远端依赖
             break
         case "tiktok":
-//            it.version = "1.0.0.3-snapshot"
+            it.version = "1.0.0.3-snapshot"
+            it.description = "LOCAL"
             break
         case "common":
-//            it.version = "1.0.0.2-snapshot"
+            it.version = "1.0.0.2-snapshot"
+            it.description = "REMOTE"
             break
         case "image":
-//            it.version = "1.0.0.2-snapshot"
+            it.version = "1.0.0.2-snapshot"
+            it.description = "REMOTE"
             break
         case "network":
-//            it.version = "1.0.0.1-snapshot"
+            it.version = "1.0.0.1-snapshot"
+            it.description = "REMOTE"
             break
         case "permission":
-//            it.version = "1.0.0.1-snapshot"
+            it.version = "1.0.0.1-snapshot"
+            it.description = "REMOTE"
             break
         case "storage":
-//            it.version = "1.0.0.2-snapshot"
+            it.version = "1.0.0.2-snapshot"
+            it.description = "REMOTE"
             break
         case "accessibility":
-//            it.version = "1.0.0.2-snapshot"
+            it.version = "1.0.0.2-snapshot"
+            it.description = "REMOTE"
             break
         case "framework":
-//            it.version = "1.0.0.1-snapshot"
+            it.version = "1.0.0.1-snapshot"
+            it.description = "REMOTE"
             break
     }
 }

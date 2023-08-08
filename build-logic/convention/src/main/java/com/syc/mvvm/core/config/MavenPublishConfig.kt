@@ -20,6 +20,7 @@ fun Project.applyMaven() {
     val properties= Properties()
     val file = File(rootDir,"maven.properties")
     if(!file.exists()){
+        println("maven.properties not found in project root,do not config maven publish!")
         return
     }
     properties.load(file.inputStream())
