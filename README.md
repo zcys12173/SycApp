@@ -39,8 +39,6 @@ plugins {
 工程支持发布本地module到maven私服
 1. 配置本地maven.properties  
 
-   如果本地没有配置maven.properties，工程依赖全部使用本地依赖方式。 
-
    工程根目录下创建`maven.properties`文件，配置内容如下：
    
    ```properties
@@ -48,56 +46,74 @@ plugins {
    releaseUrl=https://packages.aliyun.com/maven/repository/2295471-release-fIpRog/
    userName=*****
    password=*****
-   ```
+   ```  
+   如果本地没有配置maven.properties，工程依赖全部使用本地依赖方式。
    
-2. 如何切换remote/local依赖  
+3. 如何切换remote/local依赖  
 
-   根目录 `build.gradle`中配置工程版本，如果有版本号，则使用远端依赖，没有的话使用本地依赖。参考`build.gradle`示例
+   根目录 `build.gradle`中配置subProject.description的值；LOCAL:本地依赖，REMOTE：远端依赖。参考`build.gradle`示例
 
-3. 如何发布  
+4. 如何发布  
 
    发布到maven的`groupId`为`Project.group`，`version`为`Project.version`。在根目录的`build.gradle中配置`,`artifactId`为`Project.name`（插件内自动处理，无需手动配置）。如何配置参考 `build.gradle`示例。
 
-4. `build.gradle`示例  
+5. `build.gradle`示例  
 
    ```gradle
    allprojects {
-    //maven groupId
-    it.group="com.syc.mvvm.libs"
+
     /*
-    * 工程版本
+    * 配置Project的group、version、description，主要用于工程依赖和仓库发布
     *
-    * 1.如果没有配置，则工程依赖方式为本地module依赖，否则为远端依赖方式(依赖的版本就是当前配置的版本)
+    * Project.group：本地Module发布到maven仓库的GroupId、本地依赖远端module的仓库的GroupId
     *
-    * 2. 当发布新的module的时候，使用此版本号
+    * Project.version：本地Module发布到maven仓库的版本号、本地依赖远端module的的版本号
+    *
+    * Project.description：控制module的依赖方式，LOCAL:本地依赖，REMOTE：远端依赖
+    *
+    * Project.name：本地Module发布到maven仓库的名称、本地依赖远端module的仓库的名称
+    *
+    * 发布&远端依赖的maven配置：group:name:version;（参考MavenConfig.kt,ProjectDependenciesConfig.kt）
+    *
+    * 注：如果没有配置version则会强制使用本地依赖
     */
-    switch (it.name){
+    it.group = "com.syc.mvvm.libs"
+    switch (it.name) {
         case "login":
-           // it.version = "1.0.0.3-snapshot"
+            it.version = "1.0.0.3-snapshot" //版本号
+            it.description = "REMOTE"       //依赖方式，LOCAL:本地依赖，REMOTE：远端依赖
             break
         case "tiktok":
-           // it.version = "1.0.0.3-snapshot"
+            it.version = "1.0.0.3-snapshot"
+            it.description = "LOCAL"
             break
         case "common":
-           // it.version = "1.0.0.2-snapshot"
+            it.version = "1.0.0.2-snapshot"
+            it.description = "REMOTE"
             break
         case "image":
-           // it.version = "1.0.0.2-snapshot"
+            it.version = "1.0.0.2-snapshot"
+            it.description = "REMOTE"
             break
         case "network":
-            // it.version = "1.0.0.1-snapshot"
+            it.version = "1.0.0.1-snapshot"
+            it.description = "REMOTE"
             break
         case "permission":
-            // it.version = "1.0.0.1-snapshot"
+            it.version = "1.0.0.1-snapshot"
+            it.description = "REMOTE"
             break
         case "storage":
-            //it.version = "1.0.0.2-snapshot"
+            it.version = "1.0.0.2-snapshot"
+            it.description = "REMOTE"
             break
         case "accessibility":
-           // it.version = "1.0.0.2-snapshot"
+            it.version = "1.0.0.2-snapshot"
+            it.description = "REMOTE"
             break
         case "framework":
-           // it.version = "1.0.0.1-snapshot"
+            it.version = "1.0.0.1-snapshot"
+            it.description = "REMOTE"
             break
     }
 }
