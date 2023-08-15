@@ -30,7 +30,7 @@ allprojects {
     switch (it.name) {
         case "login":
             it.version = "1.0.0.3-snapshot" //版本号
-            it.description = "REMOTE"       //依赖方式，LOCAL:本地依赖，REMOTE：远端依赖
+            it.description = "LOCAL"       //依赖方式，LOCAL:本地依赖，REMOTE：远端依赖
             break
         case "tiktok":
             it.version = "1.0.0.3-snapshot"
@@ -38,31 +38,31 @@ allprojects {
             break
         case "common":
             it.version = "1.0.0.2-snapshot"
-            it.description = "REMOTE"
+            it.description = "LOCAL"
             break
         case "image":
             it.version = "1.0.0.2-snapshot"
-            it.description = "REMOTE"
+            it.description = "LOCAL"
             break
         case "network":
             it.version = "1.0.0.1-snapshot"
-            it.description = "REMOTE"
+            it.description = "LOCAL"
             break
         case "permission":
             it.version = "1.0.0.1-snapshot"
-            it.description = "REMOTE"
+            it.description = "LOCAL"
             break
         case "storage":
             it.version = "1.0.0.2-snapshot"
-            it.description = "REMOTE"
+            it.description = "LOCAL"
             break
         case "accessibility":
             it.version = "1.0.0.2-snapshot"
-            it.description = "REMOTE"
+            it.description = "LOCAL"
             break
         case "framework":
             it.version = "1.0.0.1-snapshot"
-            it.description = "REMOTE"
+            it.description = "LOCAL"
             break
     }
 }

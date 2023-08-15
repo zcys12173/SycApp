@@ -17,7 +17,7 @@ abstract class RenamePackageTask: DefaultTask() {
     }
 
     private fun loopFile(file: File){
-        if(file.path.endsWith("/.") || file.path.contains("/build-cache/") || file.path.endsWith("/build")){
+        if(file.path.contains("/.") || file.path.contains("/build-cache/") || file.path.contains("/build/")){
             return
         }
         if(file.isDirectory){
