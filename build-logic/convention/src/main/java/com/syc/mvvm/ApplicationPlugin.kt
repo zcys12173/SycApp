@@ -13,6 +13,7 @@ import com.syc.mvvm.core.config.configKotlinAndroid
 import com.syc.mvvm.core.config.handleDependencies
 import com.syc.mvvm.core.tasks.MergeManifestTask
 import com.syc.mvvm.core.tasks.MyTransformTask
+import com.syc.mvvm.core.tasks.RenamePackageTask
 import com.syc.mvvm.core.type
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -26,6 +27,9 @@ class ApplicationPlugin : Plugin<Project> {
             androidConfig()
             appendMergeManifestTask()
             configKotlinAndroid()
+            tasks.register("RenamePackageTask",RenamePackageTask::class.java){
+
+            }
         }
     }
 
