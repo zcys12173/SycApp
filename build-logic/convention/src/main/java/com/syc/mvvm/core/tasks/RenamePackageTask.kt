@@ -3,7 +3,7 @@ package com.syc.mvvm.core.tasks
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 import java.io.File
-private const val CUR_PACKAGE_NAME = "com.syc.mvvm"
+private const val CUR_PACKAGE_NAME = "com.haha.een"
 private const val TARGET_PACKAGE_NAME = "com.haha.een"
 abstract class RenamePackageTask: DefaultTask() {
     init {
@@ -12,15 +12,16 @@ abstract class RenamePackageTask: DefaultTask() {
     @TaskAction
     fun action(){
         println("------")
-        loopFile(project.projectDir)
+        loopFile(project.rootDir)
+        deleteEmptyFoldersRecursively(project.rootDir)
     }
 
     private fun loopFile(file: File){
-        if(file.path.endsWith("/.gradle") || file.path.endsWith("/.idea") || file.path.endsWith("/build")){
+        if(file.path.endsWith("/.") || file.path.contains("/build-cache/") || file.path.endsWith("/build")){
             return
         }
         if(file.isDirectory){
-            file.listFiles().forEach {
+            file.listFiles()?.forEach {
                 loopFile(it)
             }
         }else{
@@ -39,7 +40,8 @@ abstract class RenamePackageTask: DefaultTask() {
             newFile.writeText(content)
             file.delete()
         }else if(fileContent.contains(
-                CUR_PACKAGE_NAME)){
+                CUR_PACKAGE_NAME
+            )){
             file.writeText(fileContent.replace(CUR_PACKAGE_NAME, TARGET_PACKAGE_NAME))
         }
     }
@@ -56,5 +58,16 @@ abstract class RenamePackageTask: DefaultTask() {
         file.parentFile.mkdirs()
         file.createNewFile()
         return file
+    }
+
+    private fun deleteEmptyFoldersRecursively(dir: File) {
+        dir.listFiles()?.forEach { file ->
+            if (file.isDirectory) {
+                deleteEmptyFoldersRecursively(file)
+                if (file.listFiles()?.isEmpty() == true) {
+                    file.delete()
+                }
+            }
+        }
     }
 }
