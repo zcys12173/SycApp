@@ -3,7 +3,7 @@ package com.syc.mvvm.core.tasks
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 import java.io.File
-private const val CUR_PACKAGE_NAME = "com.haha.een"
+private const val CUR_PACKAGE_NAME = "com.syc.mvvm"
 private const val TARGET_PACKAGE_NAME = "com.haha.een"
 abstract class RenamePackageTask: DefaultTask() {
     init {
