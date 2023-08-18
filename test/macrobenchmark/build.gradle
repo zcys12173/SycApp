@@ -1,0 +1,56 @@
+plugins {
+    alias(libs.plugins.com.android.test)
+    alias(libs.plugins.kotlin.android)
+}
+
+android {
+    namespace 'com.syc.mvvm.macrobenchmark'
+    compileSdk 33
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    defaultConfig {
+        minSdk 24
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        // This benchmark buildType is used for benchmarking, and should function like your
+        // release build (for example, with minification on). It's signed with a debug key
+        // for easy local/CI testing.
+        benchmark {
+            debuggable = true
+            signingConfig = debug.signingConfig
+            matchingFallbacks = ["release"]
+        }
+
+        release {
+            minifyEnabled = false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    targetProjectPath = ":app"
+    experimentalProperties["android.experimental.self-instrumenting"] = true
+}
+
+dependencies {
+    implementation libs.test.androidJunit
+    implementation libs.test.espressoCore
+    implementation libs.uiautomator
+    implementation libs.benchmark.macro.junit4
+}
+
+androidComponents {
+    beforeVariants(selector().all()) {
+        enable = buildType == "benchmark"
+    }
+}

@@ -26,10 +26,11 @@ val Project.type: ProjectType
             path == ":feature:common" -> ProjectType.COMMON
             path == ":core:framework" -> ProjectType.FRAMEWORK
             path.startsWith(":feature") -> ProjectType.FEATURE
+            path.startsWith(":test") -> ProjectType.TEST
             else -> ProjectType.CORE
         }
     }
 
 enum class ProjectType {
-    APP, FEATURE, CORE, COMMON, FRAMEWORK
+    APP, FEATURE, CORE, COMMON, FRAMEWORK,TEST
 }

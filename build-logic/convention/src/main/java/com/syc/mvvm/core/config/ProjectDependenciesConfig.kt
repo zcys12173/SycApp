@@ -46,5 +46,8 @@ fun Project.handleDependencies() {
         ProjectType.FRAMEWORK -> {
             //do nothing
         }
+        ProjectType.TEST -> {
+            //do nothing
+        }
     }
 }

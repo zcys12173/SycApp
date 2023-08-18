@@ -20,6 +20,8 @@ mmkv = "1.3.0"
 junit = "4.13.2"
 androidxJunit = "1.1.5"
 espresso-core = "3.5.1"
+uiautomator = "2.2.0"
+benchmark-macro-junit4 = "1.1.1"
 
 [libraries]
 tencent-mmkv = { group = "com.tencent", name = "mmkv", version.ref = "mmkv" }
@@ -46,6 +48,8 @@ android-tool-common = { group = "com.android.tools", name = "common", version.re
 test-junit = { group = "junit", name = "junit", version.ref = "junit" }
 test-androidJunit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxJunit" }
 test-espressoCore = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
+uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
+benchmark-macro-junit4 = { group = "androidx.benchmark", name = "benchmark-macro-junit4", version.ref = "benchmark-macro-junit4" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
@@ -56,3 +60,4 @@ kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "kotlinKspPlugin" }
 screenMatch = { id = "io.github.zcys12173.ScreenMatch", version.ref = "screenMatchPlugin" }
 routerPlugin = { id = "io.github.zcys12173.plugin_router", version.ref = "routerPlugin" }
+com-android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
