@@ -1,5 +1,5 @@
 plugins {
-    id 'library-plugin'
+    id 'application-plugin'
 }
 
 group = "com.syc.mvvm"
