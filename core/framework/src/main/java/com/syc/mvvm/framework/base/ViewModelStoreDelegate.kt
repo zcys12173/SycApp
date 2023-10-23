@@ -35,7 +35,7 @@ class ViewModelStoreDelegate(storeOwner: ViewModelStoreOwner) : Closeable {
     }
 
     fun <T : ViewModel>findViewModel(key:String):T?{
-        return storeOwnerRef.get()?.viewModelStore?.get(key)
+        return storeOwnerRef.get()?.viewModelStore?.get(key) as? T
     }
 
     override fun close() {
@@ -75,7 +75,7 @@ private fun <T:ViewModel> ViewModelStore.get(key:String):T?{
  */
 private fun <T:ViewModel> ViewModelStore.get(viewModelClass:Class<T>):T?{
     val key = viewModelClass.toKey()
-    return get(key)
+    return get(key) as? T
 }
 
 fun Class<*>.toKey(): String {
