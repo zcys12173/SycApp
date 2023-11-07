@@ -70,3 +70,5 @@ include ':feature:tiktok'
 include ':feature:login'
 
 include ':test:macrobenchmark'
+
+include ':core:ble'

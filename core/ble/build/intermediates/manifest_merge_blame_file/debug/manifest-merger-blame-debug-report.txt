@@ -1,0 +1,36 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.syc.mvvm.ble" >
+4
+5    <uses-sdk android:minSdkVersion="24" />
+6
+7    <uses-permission android:name="android.permission.BLUETOOTH" />
+7-->/Users/shiyucheng/Documents/workspace/android_workspace/SycApp/core/ble/src/main/AndroidManifest.xml:5:5-68
+7-->/Users/shiyucheng/Documents/workspace/android_workspace/SycApp/core/ble/src/main/AndroidManifest.xml:5:22-65
+8    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+8-->/Users/shiyucheng/Documents/workspace/android_workspace/SycApp/core/ble/src/main/AndroidManifest.xml:6:5-73
+8-->/Users/shiyucheng/Documents/workspace/android_workspace/SycApp/core/ble/src/main/AndroidManifest.xml:6:22-70
+9    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+9-->/Users/shiyucheng/Documents/workspace/android_workspace/SycApp/core/ble/src/main/AndroidManifest.xml:7:5-76
+9-->/Users/shiyucheng/Documents/workspace/android_workspace/SycApp/core/ble/src/main/AndroidManifest.xml:7:22-73
+10    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+10-->/Users/shiyucheng/Documents/workspace/android_workspace/SycApp/core/ble/src/main/AndroidManifest.xml:8:5-74
+10-->/Users/shiyucheng/Documents/workspace/android_workspace/SycApp/core/ble/src/main/AndroidManifest.xml:8:22-71
+11    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+11-->/Users/shiyucheng/Documents/workspace/android_workspace/SycApp/core/ble/src/main/AndroidManifest.xml:9:5-81
+11-->/Users/shiyucheng/Documents/workspace/android_workspace/SycApp/core/ble/src/main/AndroidManifest.xml:9:22-78
+12    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+12-->/Users/shiyucheng/Documents/workspace/android_workspace/SycApp/core/ble/src/main/AndroidManifest.xml:10:5-79
+12-->/Users/shiyucheng/Documents/workspace/android_workspace/SycApp/core/ble/src/main/AndroidManifest.xml:10:22-76
+13
+14    <application>
+14-->/Users/shiyucheng/Documents/workspace/android_workspace/SycApp/core/ble/src/main/AndroidManifest.xml:12:5-16:19
+15        <service
+15-->/Users/shiyucheng/Documents/workspace/android_workspace/SycApp/core/ble/src/main/AndroidManifest.xml:13:9-15:40
+16            android:name="com.syc.mvvm.ble.scan.BleService"
+16-->/Users/shiyucheng/Documents/workspace/android_workspace/SycApp/core/ble/src/main/AndroidManifest.xml:14:13-44
+17            android:exported="false" />
+17-->/Users/shiyucheng/Documents/workspace/android_workspace/SycApp/core/ble/src/main/AndroidManifest.xml:15:13-37
+18    </application>
+19
+20</manifest>

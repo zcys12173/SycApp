@@ -1,0 +1,11 @@
+plugins {
+//    id 'application-plugin'
+    id 'library-plugin'
+}
+android {
+    namespace 'com.syc.mvvm.ble'
+}
+
+dependencies {
+    implementation project(':core:permission')
+}
