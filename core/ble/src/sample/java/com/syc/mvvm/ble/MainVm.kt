@@ -35,10 +35,10 @@ class MainVm : BaseViewModel() {
     private var bleBinder: BleBinder? = null
     private val devices = mutableListOf<BluetoothDevice>()
     val adapter = DeviceAdapter(devices)
-    init {
-        runDelay(3){
-            checkPermission()
-        }
+
+
+    override fun onAttach() {
+        checkPermission()
     }
 
     @SuppressLint("MissingPermission")

@@ -71,6 +71,9 @@ fun <T : ViewModel> createViewModel(
         if (owner is LifecycleOwner && this is LifecycleObserver) {
             owner.lifecycle.addObserver(this)
         }
+        if(this is BaseViewModel){
+            this.onAttach()
+        }
     }
 }
 
