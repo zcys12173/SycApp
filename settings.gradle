@@ -72,3 +72,5 @@ include ':feature:login'
 include ':test:macrobenchmark'
 
 include ':core:ble'
+
+include ':core:sensor'
