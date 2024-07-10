@@ -11,6 +11,7 @@ dependencies {
     compileOnly libs.android.tool.common
     compileOnly libs.kotlin.gradlePlugin
     compileOnly libs.kotlin.stdlib
+    compileOnly libs.asm.common
 }
 
 gradlePlugin {

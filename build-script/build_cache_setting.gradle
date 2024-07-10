@@ -8,6 +8,16 @@ buildCache{
 //        enabled = true
 //        push = true
 //    }
+//    remote(HttpBuildCache) {
+//        url = 'http://123.56.115.47:8081/cache/'
+//        allowInsecureProtocol = true
+//        enabled = false
+//        push = true
+//        credentials{
+//            username = "syc"
+//            password = "zcys@12173"
+//        }
+//    }
 }
 class AppBuildCache extends AbstractBuildCache{
 
@@ -25,6 +35,7 @@ class AppBuildService implements BuildCacheService {
 
     @Override
     boolean load(BuildCacheKey key, BuildCacheEntryReader reader) throws BuildCacheException {
+
         println("load, key: ${key}, reader: ${reader}")
         return false
     }

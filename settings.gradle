@@ -74,3 +74,4 @@ include ':test:macrobenchmark'
 include ':core:ble'
 
 include ':core:sensor'
+include ':core:track'

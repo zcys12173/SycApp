@@ -5,7 +5,6 @@ plugins {
 android {
     namespace 'com.syc.mvvm.app'
     buildTypes {
-
         benchmark {
             initWith release
             signingConfig signingConfigs.debug

@@ -22,6 +22,7 @@ androidxJunit = "1.1.5"
 espresso-core = "3.5.1"
 uiautomator = "2.2.0"
 benchmark-macro-junit4 = "1.1.1"
+asm= "9.2"
 
 [libraries]
 tencent-mmkv = { group = "com.tencent", name = "mmkv", version.ref = "mmkv" }
@@ -44,6 +45,7 @@ android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", ver
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 android-tool-mergeManifest = { group = "com.android.tools.build", name = "manifest-merger", version.ref = "androidTools" }
 android-tool-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
+asm-common = { group = "org.ow2.asm", name = "asm-commons", version.ref = "asm" }
 
 test-junit = { group = "junit", name = "junit", version.ref = "junit" }
 test-androidJunit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxJunit" }
