@@ -4,4 +4,8 @@
  <dimen name="dp_60">68.3333dp</dimen> 
 
  <dimen name="dp_20">22.7778dp</dimen> 
+
+ <dimen name="dp_200">227.7778dp</dimen> 
+
+ <dimen name="dp_0">0.0000dp</dimen> 
 </resources>
